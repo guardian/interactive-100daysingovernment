@@ -40,7 +40,7 @@ figure.interactive {
 
     .dig-slice--filters & {
         background-color: #94bfdd;
-        padding-bottom: 0;
+        padding-bottom: 5px;
     }
 }
 
@@ -174,12 +174,20 @@ $day-spacing: 20px;
 }
 
 .dig-filters__filter {
-    width: 25%;
-    height: 48px;
-    float: left;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-right: 7px;
     box-sizing: border-box;
+
+    @include mq(tablet) {
+        float: left;
+        width: 50%;
+        height: 30px;
+    }
+
+    @include mq(desktop) {
+        width: 25%;
+        height: 48px;
+    }
 
 }
 
