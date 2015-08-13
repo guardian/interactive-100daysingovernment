@@ -45,7 +45,6 @@ figure.interactive {
 }
 
 .dig-slice__inner__left {
-    @include fs-header(1);
     margin-bottom: 20px;
 
     @include mq(leftCol) {
@@ -102,6 +101,22 @@ figure.interactive {
         &:first-child {
             margin-top: -4px;
         }
+    }
+}
+
+.dig-section-title {
+    @include fs-header(1);
+    display: inline-block;
+    @include mq(leftCol) {
+        display: block;
+    }
+}
+
+.dig-back-to-top {
+    @include fs-textSans(3);
+    padding-left: 10px;
+    @include mq(leftCol) {
+        padding-left: 0;
     }
 }
 

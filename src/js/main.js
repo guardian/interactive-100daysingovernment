@@ -36,7 +36,14 @@ function app(el, days) {
         });
     }).join('');
 
-    el.querySelector('.js-sections').innerHTML = sectionsHTML;
+    var sectionsEl = el.querySelector('.js-sections');
+    sectionsEl.innerHTML = sectionsHTML;
+    sectionsEl.addEventListener('click', evt => {
+        evt.preventDefault();
+        if (evt.target.className === 'dig-back-to-top') {
+            scrollTo(document.body);
+        }
+    });
 
     document.querySelector('.l-footer').style.display = 'block';
 }

@@ -1,6 +1,9 @@
 <div class="dig-slice" id="dig-section-{{=it.id}}">
     <div class="dig-slice__inner">
-    <h2 class="dig-slice__inner__left">{{=it.title}}</h2>
+    <div class="dig-slice__inner__left">
+        <h2 class="dig-section-title">{{=it.title}}</h2>
+        <a class="dig-back-to-top" href="#">Back to top</a>
+    </div>
     <div class="dig-slice__inner__main">
         <ul class="dig-days">
             {{~it.days :day:i}}
