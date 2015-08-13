@@ -118,11 +118,17 @@ figure.interactive {
     }
 }
 
+$day-spacing: 10px;
+
 .dig-filters,
 .dig-days {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.dig-days {
+    margin-right: -$day-spacing;
 }
 
 .dig-filters__filter {
@@ -150,13 +156,11 @@ figure.interactive {
 }
 
 .dig-days__day {
-    $spacing: 10px;
-
     background-color: #f6f6f6;
     color: #767676;
     font-size: 14px;
     float: left;
-    margin: 0 $spacing $spacing 0;
+    margin: 0 $day-spacing $day-spacing 0;
     box-sizing: border-box;
     padding: 5px;
     height: 150px;
@@ -173,25 +177,25 @@ figure.interactive {
         line-height: 1;
     }
 
-    &.dig-days__day--M {
-        width: 100%;
-        padding-right: 0;
-    }
-
-    &.dig-days__day--H {
-        width: 100%;
-        height: 420px;
-        padding-right: 0;
-    }
-
     @include mq(mobileLandscape) {
-        width: calc(50% - #{$spacing});
+        width: calc(50% - #{$day-spacing});
+
+        &.dig-days__day--M {
+            width: calc(100% - #{$day-spacing});
+            padding-right: 0;
+        }
+
+        &.dig-days__day--H {
+            width: calc(100% - #{$day-spacing});
+            height: 420px;
+            padding-right: 0;
+        }
     }
 
     @include mq(desktop) {
-        width: calc(25% - #{$spacing});
+        width: calc(25% - #{$day-spacing});
         &.dig-days__day--M {
-            width: calc(50% - #{$spacing});
+            width: calc(50% - #{$day-spacing});
         }
     }
 }
