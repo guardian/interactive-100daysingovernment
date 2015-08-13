@@ -178,7 +178,7 @@ $day-spacing: 20px;
     height: 48px;
     float: left;
     margin-bottom: 20px;
-    padding-right: 10px;
+    padding-right: 7px;
     box-sizing: border-box;
 
 }
@@ -202,7 +202,7 @@ $day-spacing: 20px;
 .dig-filters__filter__link__text {
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - 40px);
+    width: calc(100% - 38px);
 }
 
 .dig-filters__filter__link__circle {
@@ -213,7 +213,7 @@ $day-spacing: 20px;
     border-radius: 100px;
     color: #94bfdd;
     background-color: white;
-    margin-right: 5px;
+    margin-right: 4px;
 }
 
 .dig-days__day {
