@@ -22,7 +22,10 @@ const sectionTitles = {
 var filterTemplateFn = doT.template(filterHTML);
 var sectionTemplateFn = doT.template(sectionHTML);
 
+var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
+
 function app(el, days) {
+
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     days.forEach(day => {
         if ((day.hierarchy === 'M' || day.hierarchy === 'H') && !day.imagehl) {
@@ -41,11 +44,11 @@ function app(el, days) {
 
     var sectionsEl = el.querySelector('.js-sections');
     sectionsEl.innerHTML = sectionsHTML;
-    sectionsEl.addEventListener('click', evt => {
-        evt.preventDefault();
-        if (evt.target.className === 'dig-back-to-top') {
+    $$(sectionsEl, '.js-back-to-top').forEach(sectionEl => {
+        sectionEl.addEventListener('click', evt => {
+            evt.preventDefault();
             scrollTo(document.body);
-        }
+        });
     });
 
     document.querySelector('.l-footer').style.display = 'block';
@@ -60,16 +63,16 @@ export function init(el, context, config, mediator) {
 
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
-    [].slice.apply(filtersEl.querySelectorAll('.js-filter'), filter => {
-        console.log('here');
-        var sectionId = filter.getAttribute('data-section');
-        filter.addEventListener('click', evt => {
+
+    $$(filtersEl, '.js-filter').forEach(filterEl => {
+        var sectionId = filterEl.getAttribute('data-section');
+        filterEl.addEventListener('click', evt => {
             evt.preventDefault();
             scrollTo(el.querySelector('#dig-section-' + sectionId));
         });
     });
 
-    [].slice.apply(el.querySelectorAll('.js-share')).forEach(shareEl => {
+    $$(el, '.js-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
         shareEl.addEventListener('click', () => {
             share(network);
