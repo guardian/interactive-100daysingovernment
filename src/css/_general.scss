@@ -118,6 +118,10 @@ figure.interactive {
     @include mq(leftCol) {
         display: block;
     }
+
+    .dig-slice--filters & {
+        color: #617e8e;
+    }
 }
 
 .dig-back-to-top {

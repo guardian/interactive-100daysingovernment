@@ -1,6 +1,6 @@
-const title = 'Can you afford to live here?';
+const title = '100 things the Tories did in their first 100 days';
 const shareURL = encodeURIComponent('http://gu.com/p/46mqa'); // TODO: short url
-const hashTag = '#UnaffordableCountry';
+const hashTag = '#100ToryDays';
 
 const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
 const facebookBaseUrl = 'https://www.facebook.com/sharer/sharer.php?ref=responsive&u=';
