@@ -31,6 +31,13 @@ figure.interactive {
         }
     }
 
+    .dig-slice--standfirst & {
+        margin-top: -20px;
+        .dig-slice__inner__left {
+            max-width: 660px;
+        }
+    }
+
     .dig-slice--filters & {
         background-color: #94bfdd;
         padding-bottom: 0;
@@ -39,6 +46,7 @@ figure.interactive {
 
 .dig-slice__inner__left {
     @include fs-header(1);
+    margin-bottom: 10px;
 
     @include mq(leftCol) {
         box-sizing: border-box;
@@ -56,10 +64,34 @@ figure.interactive {
     overflow: hidden;
 }
 
+.dig-tag {
+    @include fs-header(3);
+}
+
+.dig-date {
+    @include fs-textSans(1);
+    padding-top: 2px;
+    min-height: 48px;
+    box-sizing: border-box;
+    color: #767676;
+    border-top: 1px dotted #dfdfdf;
+    border-bottom: 1px dotted #dfdfdf;
+}
+
+.dig-share-container {
+    border-bottom: 1px dotted #dfdfdf;
+    line-height: 1;
+    padding-bottom: 10px;
+
+    @include mq(leftCol) {
+        border-bottom: 0;
+    }
+}
+
 .dig-title {
     @include f-headline;
     font-size: 60px;
-    line-height: 1.25;
+    line-height: 1;
 }
 
 .dig-standfirst {
@@ -71,11 +103,12 @@ figure.interactive {
     counter-reset: day;
 
     .dig-slice__inner {
-        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
     }
 
-    .dig-slice:first-child .dig-slice__inner {
-        border-top: 0;
+    .dig-slice:last-child .dig-slice__inner {
+        border-bottom: 0;
     }
 }
 
@@ -111,12 +144,16 @@ figure.interactive {
 }
 
 .dig-days__day {
+    $spacing: 10px;
+
+    background-color: #f6f6f6;
     color: #767676;
     font-size: 14px;
     float: left;
-    width: 25%;
+    width: calc(25% - #{$spacing});
+    margin: 0 $spacing $spacing 0;
     box-sizing: border-box;
-    padding: 3px;
+    padding: 5px;
     height: 150px;
 
     overflow: hidden;
@@ -125,14 +162,14 @@ figure.interactive {
         counter-increment: day;
         content: counter(day);
         display: block;
-        color: #aad8f1;
+        color: #94bfdd;
         font-weight: bold;
         font-size: 40px;
         line-height: 1;
     }
 
     &.dig-days__day--M {
-        width: 50%;
+        width: calc(50% - #{$spacing});
     }
 
     &.dig-days__day--H {

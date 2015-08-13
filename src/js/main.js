@@ -37,6 +37,8 @@ function app(el, days) {
     }).join('');
 
     el.querySelector('.js-sections').innerHTML = sectionsHTML;
+
+    document.querySelector('.l-footer').style.display = 'block';
 }
 
 export function init(el, context, config, mediator) {
