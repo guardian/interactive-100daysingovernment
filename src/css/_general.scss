@@ -9,7 +9,7 @@ figure.interactive {
 .dig-slice {
     background-color: #dcdcdc;
     &.dig-slice--filters {
-        background-color: #507892;
+        background-color: #617e8e;
     }
 }
 
@@ -32,7 +32,7 @@ figure.interactive {
     }
 
     .dig-slice--filters & {
-        background-color: #aad8f1;
+        background-color: #94bfdd;
         padding-bottom: 0;
     }
 }
@@ -58,13 +58,13 @@ figure.interactive {
 
 .dig-title {
     @include f-headline;
-    font-size: 50px;
+    font-size: 60px;
     line-height: 1.25;
 }
 
 .dig-standfirst {
     color: #767676;
-    max-width: 740px;
+    max-width: 660px;
 }
 
 .dig-sections {
@@ -88,10 +88,11 @@ figure.interactive {
 
 .dig-filters__filter {
     width: 25%;
-    box-sizing: border-box;
+    height: 48px;
     float: left;
     margin-bottom: 20px;
-    //padding-right: 20px;
+    padding-right: 10px;
+    box-sizing: border-box;
 
     &::before {
         content: "";
@@ -101,7 +102,7 @@ figure.interactive {
         height: 40px;
         border-radius: 100px;
         background-color: white;
-        margin-right: 20px;
+        margin-right: 10px;
     }
 }
 

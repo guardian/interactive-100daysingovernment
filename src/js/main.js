@@ -5,6 +5,7 @@ import filterHTML from './text/filter.html!text'
 import sectionHTML from './text/section.html!text'
 
 import scrollTo from './lib/scroll-to'
+import share from './lib/share'
 
 const sheetURL = 'http://visuals.guim.co.uk/spreadsheetdata/1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY.json';
 
@@ -48,10 +49,19 @@ export function init(el, context, config, mediator) {
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
     filtersEl.addEventListener('click', evt => {
+        evt.preventDefault();
+
         if (evt.target.className === 'dig-filters__filter__link') {
             let sectionId = evt.target.getAttribute('data-section');
             scrollTo(el.querySelector('#dig-section-' + sectionId));
         }
+    });
+
+    [].slice.apply(el.querySelectorAll('.js-share')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        shareEl.addEventListener('click', () => {
+            share(network);
+        });
     });
 
     reqwest({
