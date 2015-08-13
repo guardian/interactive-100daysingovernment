@@ -25,6 +25,7 @@ var sectionTemplateFn = doT.template(sectionHTML);
 function app(el, days) {
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     days.forEach(day => {
+        if ((day.hierarchy === 'M' || day.hierarchy === 'H') && !day.imagehl) day.hierarchy = 'B';
         sectionDays[day.section].push(day);
     });
 

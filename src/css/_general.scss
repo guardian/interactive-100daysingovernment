@@ -166,6 +166,7 @@ $day-spacing: 20px;
 
 .dig-days {
     margin-right: -$day-spacing;
+    max-width: 960px;
 }
 
 .dig-filters__filter {
@@ -210,11 +211,12 @@ $day-spacing: 20px;
     }
 
     width: 100%;
-    min-height: 150px;
+    min-height: 132px;
 
     @include mq(mobileLandscape) {
         width: calc(50% - #{$day-spacing});
 
+        &.dig-days__day--B,
         &.dig-days__day--M,
         &.dig-days__day--H {
             width: calc(100% - #{$day-spacing});
@@ -223,8 +225,9 @@ $day-spacing: 20px;
 
     @include mq(desktop) {
         width: calc(25% - #{$day-spacing});
-        height: 150px;
+        height: 132px;
 
+        &.dig-days__day--B,
         &.dig-days__day--M {
             width: calc(50% - #{$day-spacing});
         }
@@ -236,7 +239,7 @@ $day-spacing: 20px;
 }
 
 .dig-days__day__text {
-    padding: 5px 10px 5px 5px;
+    padding: 5px 20px 5px 5px;
     min-height: 30px;
 
     @include mq(desktop) {
@@ -250,7 +253,7 @@ $day-spacing: 20px;
         @include f-headline;
         position: absolute;
         left: 0;
-        width: 65px;
+        width: 60px;
         color: #94bfdd;
         font-size: 35px;
         font-weight: bold;
@@ -258,7 +261,7 @@ $day-spacing: 20px;
 
     }
 
-    padding-left: 65px;
+    padding-left: 60px;
     @include mq(mobileLandscape) {
         padding-left: 0;
         &::before {
@@ -270,6 +273,12 @@ $day-spacing: 20px;
     &.dig-days__day__text--small::before {
         font-size: 30px;
     }
+
+    .dig-days__day--B & {
+        @include fs-headline(3);
+        font-weight: 500;
+        color: #94bfdd;
+    }
 }
 
 .dig-days__day__img {
@@ -277,7 +286,7 @@ $day-spacing: 20px;
         display: table-cell;
 
         .dig-days__day--M & {
-            width: 250px;
+            width: 220px;
         }
 
         .dig-days__day--H & {
@@ -293,5 +302,5 @@ $day-spacing: 20px;
 
 // Make 100th number smaller!
 #dig-section-F .dig-days__day:last-child .dig-days__day__text::before {
-    font-size: 30px;
+    font-size: 28px;
 }
