@@ -1,16 +1,63 @@
-import iframeMessenger from 'guardian/iframe-messenger'
 import reqwest from 'reqwest'
+import doT from 'olado/doT'
 import mainHTML from './text/main.html!text'
+import filterHTML from './text/filter.html!text'
+import sectionHTML from './text/section.html!text'
+
+import scrollTo from './lib/scroll-to'
+
+const sheetURL = 'http://visuals.guim.co.uk/spreadsheetdata/1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY.json';
+
+const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F'];
+const sectionTitles = {
+    'A': 'Implementing the manifesto',
+    'B': 'Surprise annoucements, mostly Tory-flavoured',
+    'C': 'U-turns and broken promises',
+    'D': 'Delays and tactical retreats',
+    'E': 'Excursions into Labourish territory',
+    'F': 'Reacting to events'
+};
+
+var filterTemplateFn = doT.template(filterHTML);
+var sectionTemplateFn = doT.template(sectionHTML);
+
+function app(el, days) {
+    var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
+    days.forEach(day => {
+        sectionDays[day.section].push(day);
+    });
+
+    var sectionsHTML = sectionIds.map(function (sectionId) {
+        return sectionTemplateFn({
+            'id': sectionId,
+            'title': sectionTitles[sectionId],
+            'days': sectionDays[sectionId]
+        });
+    }).join('');
+
+    el.querySelector('.js-sections').innerHTML = sectionsHTML;
+}
 
 export function init(el, context, config, mediator) {
-    iframeMessenger.enableAutoResize();
+    el.innerHTML = mainHTML;
 
-    el.innerHTML = mainHTML
+    var filtersHTML = sectionIds.map(function (sectionId) {
+        return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});
+    }).join('');
 
-	reqwest({
-	    url: 'http://ip.jsontest.com/',
-	    type: 'json',
-	    crossOrigin: true,
-	    success: (resp) => el.querySelector('.test-msg').innerHTML = `Your IP address is ${resp.ip}`
-	});
+    var filtersEl = el.querySelector('.js-filters');
+    filtersEl.innerHTML = filtersHTML;
+    filtersEl.addEventListener('click', evt => {
+        if (evt.target.className === 'dig-filters__filter__link') {
+            let sectionId = evt.target.getAttribute('data-section');
+            scrollTo(el.querySelector('#dig-section-' + sectionId));
+        }
+    });
+
+    reqwest({
+        url: sheetURL,
+        type: 'json',
+        crossOrigin: true,
+        success: resp => app(el, resp.sheets.days)
+    });
 }

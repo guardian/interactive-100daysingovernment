@@ -1,23 +1,141 @@
-.interactive-es6-headline {
-	@include fs-headline(5);
+body,
+figure.interactive {
+    margin: 0;
+    padding: 0;
+
+    @include fs-bodyCopy(2);
 }
 
-.test-msg {
-	color: #005689;
-	@include fs-textSans(3);
+.dig-slice {
+    background-color: #dcdcdc;
+    &.dig-slice--filters {
+        background-color: #507892;
+    }
 }
 
-.fonts {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	margin-top: 24px;
-	li {
-		margin-bottom: 6px;
-	}
+.dig-slice__inner {
+    clear: left;
+
+    margin: 0 auto;
+    background-color: white;
+    box-sizing: border-box;
+
+    padding: 10px;
+    @include mq(mobileLandscape) {
+        padding: 20px;
+    }
+
+    @each $bp in (tablet, desktop, leftCol, wide) {
+        @include mq($bp) {
+            max-width: map-get($mq-breakpoints, $bp);
+        }
+    }
+
+    .dig-slice--filters & {
+        background-color: #aad8f1;
+        padding-bottom: 0;
+    }
 }
 
-.fonts__egyptian { @include fs-headline(3); }
-.fonts__text-egyptian { @include fs-bodyCopy(2); }
-.fonts__sans { @include f-headlineSans; }
-.fonts__text-sans { @include fs-textSans(4); }
+.dig-slice__inner__left {
+    @include fs-header(1);
+
+    @include mq(leftCol) {
+        box-sizing: border-box;
+        padding-right: 20px;
+        width: 140px;
+        float: left;
+    }
+
+    @include mq(wide) {
+        width: 220px;
+    }
+}
+
+.dig-slice__inner__main {
+    overflow: hidden;
+}
+
+.dig-title {
+    @include f-headline;
+    font-size: 50px;
+    line-height: 1.25;
+}
+
+.dig-standfirst {
+    color: #767676;
+    max-width: 740px;
+}
+
+.dig-sections {
+    counter-reset: day;
+
+    .dig-slice__inner {
+        border-top: 1px solid #333;
+    }
+
+    .dig-slice:first-child .dig-slice__inner {
+        border-top: 0;
+    }
+}
+
+.dig-filters,
+.dig-days {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dig-filters__filter {
+    width: 25%;
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 20px;
+    //padding-right: 20px;
+
+    &::before {
+        content: "";
+        float: left;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        background-color: white;
+        margin-right: 20px;
+    }
+}
+
+.dig-filters__filter__link {
+    color: white;
+}
+
+.dig-days__day {
+    color: #767676;
+    font-size: 14px;
+    float: left;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 3px;
+    height: 150px;
+
+    overflow: hidden;
+
+    &::before {
+        counter-increment: day;
+        content: counter(day);
+        display: block;
+        color: #aad8f1;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    &.dig-days__day--M {
+        width: 50%;
+    }
+
+    &.dig-days__day--H {
+        width: 100%;
+        height: 300px;
+    }
+}
