@@ -156,21 +156,22 @@ $day-spacing: 10px;
 }
 
 .dig-days__day {
+    position: relative;
     background-color: #f6f6f6;
     color: #767676;
     font-size: 14px;
     float: left;
     margin: 0 $day-spacing $day-spacing 0;
     box-sizing: border-box;
-    padding: 5px;
-    height: 150px;
 
     overflow: hidden;
 
     &::before {
         counter-increment: day;
         content: counter(day);
-        display: block;
+        position: absolute;
+        top: 5px;
+        left: 5px;
         color: #94bfdd;
         font-weight: bold;
         font-size: 40px;
@@ -178,31 +179,55 @@ $day-spacing: 10px;
     }
 
     width: 100%;
+    min-height: 150px;
+
     @include mq(mobileLandscape) {
         width: calc(50% - #{$day-spacing});
 
-        &.dig-days__day--M {
-            width: calc(100% - #{$day-spacing});
-            padding-right: 0;
-        }
-
+        &.dig-days__day--M,
         &.dig-days__day--H {
             width: calc(100% - #{$day-spacing});
-            height: 420px;
-            padding-right: 0;
         }
     }
 
     @include mq(desktop) {
         width: calc(25% - #{$day-spacing});
+        height: 150px;
+
         &.dig-days__day--M {
             width: calc(50% - #{$day-spacing});
+        }
+
+        &.dig-days__day--H {
+            height: 420px;
         }
     }
 }
 
+.dig-days__day__text {
+    padding-top: 45px;
+
+    @include mq(desktop) {
+        display: table-cell;
+        vertical-align: top;
+        padding: 45px 10px 5px 5px;
+    }
+}
+
 .dig-days__day__img {
-    float: right;
-    margin: -45px 0 0 10px;
-    height: calc(100% + 10px);
+    @include mq(desktop) {
+        display: table-cell;
+
+        .dig-days__day--M & {
+            width: 250px;
+        }
+
+        .dig-days__day--H & {
+            width: 700px;
+        }
+    }
+
+    & > img {
+        width: 100%;
+    }
 }
