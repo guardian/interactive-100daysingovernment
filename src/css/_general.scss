@@ -89,8 +89,12 @@ figure.interactive {
 
 .dig-title {
     @include f-headline;
-    font-size: 60px;
+    max-width: 660px;
+    font-size: 40px;
     line-height: 1;
+    @include mq(tablet) {
+        font-size: 60px;
+    }
 }
 
 .dig-standfirst {
@@ -107,16 +111,30 @@ figure.interactive {
 .dig-section-title {
     @include fs-header(1);
     display: inline-block;
+    max-width: 220px;
+    @include mq(mobileLandscape) {
+        max-width: none;
+    }
     @include mq(leftCol) {
         display: block;
     }
 }
 
 .dig-back-to-top {
-    @include fs-textSans(3);
-    padding-left: 10px;
+    @include f-textSans;
+    &,
+    &:hover,
+    &:active {
+        color: #767676;
+    }
+
+    float: right;
+    font-size: 12px;
+    line-height: 26px;
     @include mq(leftCol) {
-        padding-left: 0;
+        float: none;
+        font-size: 14px;
+        line-height: inherit;
     }
 }
 
