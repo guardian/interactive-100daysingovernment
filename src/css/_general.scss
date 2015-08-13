@@ -177,6 +177,7 @@ $day-spacing: 10px;
         line-height: 1;
     }
 
+    width: 100%;
     @include mq(mobileLandscape) {
         width: calc(50% - #{$day-spacing});
 
