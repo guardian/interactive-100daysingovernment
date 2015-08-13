@@ -32,7 +32,10 @@ figure.interactive {
     }
 
     .dig-slice--standfirst & {
-        margin-top: -20px;
+        margin-top: -10px;
+        @include mq(mobileLandscape) {
+            margin-top: -20px;
+        }
         .dig-slice__inner__left {
             max-width: 660px;
         }
