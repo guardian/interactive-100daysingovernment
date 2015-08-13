@@ -5,7 +5,10 @@
         <ul class="dig-days">
             {{~it.days :day:i}}
                 <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}">
-                    {{=day.text}}
+                    {{?day.imagesizexl}}
+                        <img class="dig-days__day__img" src="{{=day.imagesizexl}}" />
+                    {{?}}
+                    <p>{{=day.text}}</p>
                 </li>
             {{~}}
         </ul>
