@@ -60,13 +60,13 @@ export function init(el, context, config, mediator) {
 
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
-    filtersEl.addEventListener('click', evt => {
-        evt.preventDefault();
-
-        if (evt.target.className === 'dig-filters__filter__link') {
-            let sectionId = evt.target.getAttribute('data-section');
+    [].slice.apply(filtersEl.querySelectorAll('.js-filter'), filter => {
+        console.log('here');
+        var sectionId = filter.getAttribute('data-section');
+        filter.addEventListener('click', evt => {
+            evt.preventDefault();
             scrollTo(el.querySelector('#dig-section-' + sectionId));
-        }
+        });
     });
 
     [].slice.apply(el.querySelectorAll('.js-share')).forEach(shareEl => {

@@ -140,6 +140,10 @@ figure.interactive {
         font-size: 14px;
         line-height: inherit;
     }
+
+    & > span {
+        vertical-align: middle;
+    }
 }
 
 .dig-sections {
@@ -177,24 +181,39 @@ $day-spacing: 20px;
     padding-right: 10px;
     box-sizing: border-box;
 
-    &::before {
-        content: "";
-        float: left;
-        display: block;
-        width: 35px;
-        height: 35px;
-        border-radius: 100px;
-        background-color: white;
-        margin-right: 10px;
-    }
 }
 
 .dig-filters__filter__link {
+    display: block;
+    line-height: 20px;
+
     &,
     &:hover,
     &:active {
         color: white;
+        text-decoration: none;
     }
+
+    &:hover .dig-filters__filter__link__text {
+        text-decoration: underline;
+    }
+}
+
+.dig-filters__filter__link__text {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 40px);
+}
+
+.dig-filters__filter__link__circle {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    color: #94bfdd;
+    background-color: white;
+    margin-right: 5px;
 }
 
 .dig-days__day {
