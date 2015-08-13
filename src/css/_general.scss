@@ -197,6 +197,8 @@ $day-spacing: 20px;
 .dig-filters__filter__link {
     display: block;
     line-height: 20px;
+    opacity: 0.8;
+    transition: opacity 0.1s ease-out;
 
     &,
     &:hover,
@@ -205,8 +207,8 @@ $day-spacing: 20px;
         text-decoration: none;
     }
 
-    &:hover .dig-filters__filter__link__text {
-        text-decoration: underline;
+    &:hover {
+        opacity: 1;
     }
 }
 
