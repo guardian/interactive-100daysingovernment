@@ -252,3 +252,9 @@ $day-spacing: 20px;
         width: 100%;
     }
 }
+
+
+// Make 100th number smaller!
+#dig-section-F .dig-days__day:last-child .dig-days__day__text::before {
+    font-size: 30px;
+}
