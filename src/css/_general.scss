@@ -152,7 +152,11 @@ $day-spacing: 10px;
 }
 
 .dig-filters__filter__link {
-    color: white;
+    &,
+    &:hover,
+    &:active {
+        color: white;
+    }
 }
 
 .dig-days__day {
