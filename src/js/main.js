@@ -49,7 +49,7 @@ function app(el, days) {
     $$(sectionsEl, '.js-back-to-top').forEach(sectionEl => {
         sectionEl.addEventListener('click', evt => {
             evt.preventDefault();
-            scrollTo(document.body);
+            scrollTo(el.querySelector('.js-top'));
         });
     });
 
