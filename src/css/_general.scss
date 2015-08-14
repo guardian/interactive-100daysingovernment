@@ -50,6 +50,7 @@ figure.interactive {
 }
 
 .dig-slice__inner__left {
+    position: relative;
     margin-bottom: 20px;
 
     @include mq(leftCol) {
@@ -115,13 +116,9 @@ figure.interactive {
 
 .dig-section-title {
     @include fs-header(1);
-    display: inline-block;
-    max-width: 220px;
-    @include mq(mobileLandscape) {
-        max-width: none;
-    }
+    padding-right: 90px;
     @include mq(leftCol) {
-        display: block;
+        padding-right: 0;
     }
 
     .dig-slice--filters & {
@@ -137,11 +134,14 @@ figure.interactive {
         color: #767676;
     }
 
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+
     font-size: 12px;
     line-height: 26px;
     @include mq(leftCol) {
-        float: none;
+        position: static;
         font-size: 14px;
         line-height: inherit;
     }
