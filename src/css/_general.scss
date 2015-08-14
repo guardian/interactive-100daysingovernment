@@ -108,6 +108,7 @@ a {
 
 .dig-title {
     @include f-headline;
+    margin: 0;
     max-width: 660px;
     font-size: 40px;
     line-height: 1;
