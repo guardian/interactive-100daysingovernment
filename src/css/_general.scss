@@ -6,6 +6,19 @@ figure.interactive {
     @include fs-bodyCopy(2);
 }
 
+a {
+    &,
+    &:hover,
+    &:active {
+        color: #005689;
+    }
+
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .dig-slice {
     background-color: #dcdcdc;
     &.dig-slice--filters {
