@@ -7,7 +7,7 @@ import sectionHTML from './text/section.html!text'
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 
-const sheetURL = 'http://interactive.guim.co.uk/docsdata-test/1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY.json';
+const sheetURL = 'http://interactive.guim.co.uk/docsdata/1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY.json';
 
 const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F'];
 const sectionTitles = {
