@@ -31,7 +31,9 @@ function app(el, days) {
         if ((day.hierarchy === 'M' || day.hierarchy === 'H') && !day.imageHL) {
             day.hierarchy = 'B';
         }
-        sectionDays[day.section].push(day);
+        if (day.section) {
+            sectionDays[day.section].push(day);
+        }
     });
 
     var sectionsHTML = sectionIds.map(function (sectionId) {
