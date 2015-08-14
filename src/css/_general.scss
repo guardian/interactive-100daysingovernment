@@ -291,7 +291,6 @@ $day-spacing: 20px;
         width: 60px;
         color: #94bfdd;
         font-size: 35px;
-        font-weight: bold;
         line-height: 1;
 
     }
@@ -309,10 +308,15 @@ $day-spacing: 20px;
         font-size: 30px;
     }
 
-    .dig-days__day--B & {
-        @include fs-headline(3);
-        font-weight: 500;
-        color: #94bfdd;
+    @include mq(desktop) {
+        .dig-days__day--B &,
+        .dig-days__day--M &,
+        .dig-days__day--H & {
+            &::before {
+                font-size: 72px;
+                width: 80px;
+            }
+        }
     }
 }
 
