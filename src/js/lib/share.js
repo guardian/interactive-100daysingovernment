@@ -1,5 +1,5 @@
 const title = '100 things the Tories did in their first 100 days';
-const shareURL = encodeURIComponent('http://gu.com/p/46mqa'); // TODO: short url
+const shareURL = encodeURIComponent('http://gu.com/p/4bft3'); // TODO: short url
 const hashTag = '#100ToryDays';
 
 const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
