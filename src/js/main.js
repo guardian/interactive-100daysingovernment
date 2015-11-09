@@ -7,7 +7,13 @@ import sectionHTML from './text/section.html!text'
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 
-const sheetURL = 'http://interactive.guim.co.uk/docsdata/1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY.json';
+const sheetKey = '1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY' 
+const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
+const sheetFileType = '.json';
+
+const sheetURL = sheetPath+sheetKey+sheetFileType;
+
+//1Dqoxw3RUv0JSXkn5kXcMS0sa57KLjfmffNVZgk8pAts
 
 const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F'];
 const sectionTitles = {
