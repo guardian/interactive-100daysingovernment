@@ -19,6 +19,8 @@
           var el = document.querySelector('.interactive');
           require = curl;
           curl(['boot.js'], function(app) {
+
+                console.log(el)
                 app.boot(el);
           });
         </script>

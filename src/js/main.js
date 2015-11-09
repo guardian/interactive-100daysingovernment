@@ -7,22 +7,25 @@ import sectionHTML from './text/section.html!text'
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 
-const sheetKey = '1X4epy4vV8XjONqzCsqzNet_j3-047c_PPh6znIP3KyY' 
+
+var sheetKey = '1iTB3A14lnsKiSnCbaJTsFwS_sPEFXvwk5RoLMaRUKbs';
 const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
 const sheetFileType = '.json';
 
 const sheetURL = sheetPath+sheetKey+sheetFileType;
 
+console.log(sheetKey);
+
 //1Dqoxw3RUv0JSXkn5kXcMS0sa57KLjfmffNVZgk8pAts
 
 const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F'];
 const sectionTitles = {
-    'A': 'Implementing the manifesto',
-    'B': 'Surprise annoucements, mostly Tory-flavoured',
-    'C': 'U-turns and broken promises',
-    'D': 'Delays and tactical retreats',
-    'E': 'Excursions into Labourish territory',
-    'F': 'Reacting to events'
+    'A': '1-10',
+    'B': '11-20',
+    'C': '21-30',
+    'D': '31-40',
+    'E': '41-50',
+    'F': '51-60'
 };
 
 var filterTemplateFn = doT.template(filterHTML);
@@ -31,6 +34,8 @@ var sectionTemplateFn = doT.template(sectionHTML);
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days) {
+
+    console.log(el)
 
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     days.forEach(day => {
@@ -91,6 +96,6 @@ export function init(el, context, config, mediator) {
         url: sheetURL,
         type: 'json',
         crossOrigin: true,
-        success: resp => app(el, resp.sheets.days)
+        success: resp => app(el, resp.sheets.Sheet1)
     });
 }
