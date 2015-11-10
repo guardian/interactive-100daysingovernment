@@ -3,6 +3,8 @@ figure.interactive {
     margin: 0;
     padding: 0;
 
+
+
     @include fs-bodyCopy(2);
 }
 
@@ -34,6 +36,7 @@ a {
     box-sizing: border-box;
 
     padding: 10px;
+
     @include mq(mobileLandscape) {
         padding: 20px;
     }
@@ -270,9 +273,9 @@ $day-spacing: 20px;
     margin: 0 $day-spacing $day-spacing 0;
     box-sizing: border-box;
 
-    border-top: 1px solid #94bfdd;
+    
     &.dig-days__day--H:first-child {
-        border-top: 0;
+        border-top: 0 !important;
     }
 
     width: 100%;
@@ -290,7 +293,7 @@ $day-spacing: 20px;
 
     @include mq(desktop) {
         width: calc(25% - #{$day-spacing});
-        height: 132px;
+        height: auto;//132px
 
         &.dig-days__day--B,
         &.dig-days__day--M {
@@ -303,29 +306,54 @@ $day-spacing: 20px;
     }
 }
 
+.dig-days_day__number {
+     
+
+        @include f-headline;
+        position: relative;
+        float:left;
+        left: 0;
+        width: 60px;
+        font-size: 30px;
+        line-height: 1;
+        
+        &.dig-days_day__number--B{
+            font-size: 40px;
+        }
+        &.dig-days_day__number--M {
+            font-size: 50px;
+            width: 80px;
+        }
+
+        &.dig-days_day__number--H {
+            font-size: 60px;
+            width: 80px;
+        }
+}
+
 .dig-days__day__text {
     padding: 5px 20px 5px 5px;
     min-height: 30px;
-
     @include mq(desktop) {
         display: table-cell;
         vertical-align: top;
     }
 
-    &::before {
-        counter-increment: day;
-        content: counter(day);
-        @include f-headline;
-        position: absolute;
-        left: 0;
-        width: 60px;
-        color: #94bfdd;
-        font-size: 35px;
-        line-height: 1;
+    // &::before {
+    //     counter-increment: day;
+    //     content: counter(day);
+    //     @include f-headline;
+    //     position: absolute;
+    //     left: 0;
+    //     width: 60px;
+    //     font-size: 35px;
+    //     line-height: 1;
+    //     color: day;
 
-    }
+    // }
 
     padding-left: 60px;
+
     @include mq(mobileLandscape) {
         padding-left: 0;
         &::before {

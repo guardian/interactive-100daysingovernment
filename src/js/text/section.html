@@ -12,8 +12,13 @@
     <div class="dig-slice__inner__main">
         <ul class="dig-days">
             {{~it.days :day:i}}
-                <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}">
-                    <p class="dig-days__day__text">{{=day.text}}</p>
+                <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.number/10))}}">
+                    <p class="dig-days__day__text">
+                            <span class="dig-days_day__number dig-days_day__number--{{=day.hierarchy}}" data-count="{{=Math.ceil((day.number/10))}}">
+                                {{=day.number}}
+                            </span>
+                        {{=day.text}}
+                    </p>
                     {{?day.imageHL}}
                         <div class="dig-days__day__img">
                             <img src="{{=day.imageSizeXL}}" />
