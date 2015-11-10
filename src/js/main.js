@@ -118,7 +118,7 @@ function setColorScheme(baseColor){
     [].forEach.call(a3, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.borderTop= n+'px solid '+c });
     px
     var a4 = document.getElementsByClassName('dig-days__heading');
-    [].forEach.call(a4, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.color = c; });
+    [].forEach.call(a4, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.color = c +"!important"; });
 
 
     //border-top: 1px solid #94bfdd;

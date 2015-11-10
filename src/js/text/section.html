@@ -13,29 +13,27 @@
         <ul class="dig-days">
             {{~it.days :day:i}}
                 <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.number/10))}}">
+                    {{?day.videoHL}}
+                            <div class="day__videocontent">
+                                <div class="day__video-container">
+                                    <iframe src="{{=day.Video}}" width="700" height="360" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                    {{?}}
                     <p class="dig-days__day__text">
                             <span class="dig-days_day__number dig-days_day__number--{{=day.hierarchy}}" data-count="{{=Math.ceil((day.number/10))}}">
                                 {{=day.number}}
                             </span>
                        <span class="dig-days__heading" data-count="{{=Math.ceil((day.number/10))}}">{{=day.title}}</span> {{=day.text}}
                     </p>
-                    {{?day.Video}}
 
+                    
 
-                            <div class="day__videocontent">
-                                <div class="day__video-container">
-                                    <iframe src="{{=day.Video}}" width="640" height="360" frameborder="0"></iframe>
-                                </div>
-                                <!-- /video -->
-                            </div>
-                            <!-- /video-wrapper --> 
+                    {{?day.imageHL}}
+                    <div class="dig-days__day__img">
+                        <img src="{{=day.imageSizeXL}}" />
+                    </div>
                     {{?}}
-
-                        {{?day.imageHL}}
-                        <div class="dig-days__day__img">
-                            <img src="{{=day.imageSizeXL}}" />
-                        </div>
-                        {{?}}
                     
                 </li>
             {{~}}
