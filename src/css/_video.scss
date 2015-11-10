@@ -1,0 +1,21 @@
+.day__youtubevideowrap, .day__videocontent {
+    width: 80%;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.day__video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+}
+
+.day__video-container iframe, .video-container object, .video-container embed {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
