@@ -188,7 +188,7 @@ a {
     counter-reset: day;
 
     .dig-slice__inner {
-        border-bottom: 1px solid #333;
+        // border-bottom: 1px solid #333;
         padding-bottom: 0;
     }
 
@@ -285,14 +285,16 @@ $day-spacing: 20px;
 
         &.dig-days__day--B,
         &.dig-days__day--M,
-        &.dig-days__day--H {
+        &.dig-days__day--H, &.dig-days__day--VH{
             width: calc(100% - #{$day-spacing});
+            overflow: hidden;
         }
+        
     }
 
     @include mq(desktop) {
         width: calc(25% - #{$day-spacing});
-        height: auto;//132px
+        height: gs-height(5);
 
         &.dig-days__day--B,
         &.dig-days__day--M {
@@ -302,7 +304,18 @@ $day-spacing: 20px;
         &.dig-days__day--H {
             height: 420px;
         }
+
+         &.dig-days__day--VH {
+            height: 420px;
+            padding-bottom:12px;
+        }
     }
+}
+
+.dig-days__heading{
+    font-weight:700;
+    border-bottom: 1px solid #CC0000;
+    // font-size:1em;
 }
 
 .dig-days_day__number {
@@ -312,21 +325,22 @@ $day-spacing: 20px;
         position: relative;
         float:left;
         left: 0;
-        width: 60px;
+        width: auto;
         font-size: 30px;
         line-height: 1;
+        padding-right: $gs-gutter/2;
         
         &.dig-days_day__number--B{
             font-size: 40px;
         }
         &.dig-days_day__number--M {
             font-size: 50px;
-            width: 80px;
+           // width: 80px;
         }
 
         &.dig-days_day__number--H {
             font-size: 60px;
-            width: 80px;
+           // width: 80px;
         }
 }
 

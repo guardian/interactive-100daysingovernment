@@ -1,0 +1,54 @@
+.dig-slice__inner__graphic{
+    
+    font: "Guardian Egyptian Web", serif;
+    font-size: 0.8em;
+    color: white;
+    line-height:1em;
+
+
+}
+.dig-slice__inner__graphic h1{
+    font-family: "Guardian Egyptian Web", serif; 
+    font-weight:200;
+    font-size: 4em;
+    line-height:1em;
+    margin:0;
+    color: white;
+    padding-bottom: gs-height(1);
+    
+}
+
+.dig-slice__inner__graphic h2{
+    display: inline;
+    padding-right: $gs-gutter/2;
+    font-family: "Guardian Egyptian Web", serif; 
+    font-weight:600;
+    font-size: 1rem;
+    line-height:1.2em;
+    color: white;
+    
+}
+
+.gv-copy-holder{
+    display: inline;
+    font-family: "Guardian Egyptian Web", serif; 
+    font-weight:200;
+    font-size: 1rem;
+    line-height:1.5em;
+    color: white;
+    
+}
+
+.gv-highlight-holder{
+    width:100%;
+    max-width: gs-span(8);
+}
+
+.with-divider{
+    border-top: 1px rgba(255,255,255,0.3) solid;
+}
+
+.dig-slice__inner__{
+    height: gs-height(4);
+
+}

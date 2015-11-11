@@ -1,5 +1,6 @@
 import reqwest from 'reqwest'
 import doT from 'olado/doT'
+import pageHeadHTML from './text/pageHead.html!text'
 import mainHTML from './text/main.html!text'
 import filterHTML from './text/filter.html!text'
 import sectionHTML from './text/section.html!text'
@@ -14,19 +15,24 @@ const sheetKey = getQueryVariable('key');
 const sheetFileType = '.json';
 const sheetURL = sheetPath+sheetKey+sheetFileType;
 
-const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F'];
+const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
 const sectionTitles = {
-    'A': '1-10',
+    'A': 'Top ten',
     'B': '11-20',
     'C': '21-30',
     'D': '31-40',
     'E': '41-50',
-    'F': '51-60'
+    'F': '51-60',
+    'G': '61-70',
+    'H': '71-80',
+    'I': '81-90',
+    'J': '91-100'
 };
 
 var totalCount;
 var baseLum = 0.075;
 
+var pageHeadTemplateFn = doT.template(pageHeadHTML);
 var filterTemplateFn = doT.template(filterHTML);
 var sectionTemplateFn = doT.template(sectionHTML);
 
@@ -34,10 +40,16 @@ var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days, headInfo) {
     totalCount = days.length;
-    var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
+    var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
     days.forEach(day => {
-        if ((day.hierarchy === 'M' || day.hierarchy === 'H') && !day.imageHL) {
-            day.hierarchy = 'B';
+        
+        if ((day.hierarchy === 'M' || day.hierarchy === 'H') && (!day.imageHL )) {
+             day.hierarchy = 'B';
+        }
+      
+
+        if (day.videoHL) {
+             day.hierarchy = 'H';
         }
         if (day.section) {
             sectionDays[day.section].push(day);
@@ -98,9 +110,10 @@ function setBaseColor(v){
 } 
 
 function setColorScheme(baseColor){
-    document.getElementById("filterArea").style.background = ColorLuminance(baseColor,baseLum);
+    document.getElementById("filterArea").style.background = baseColor;
     document.getElementById("filterAreaBG").style.background = baseColor;
-
+    document.getElementById("featureAreaBG").style.background = ColorLuminance(baseColor, baseLum);
+    document.getElementById("featureArea").style.background = ColorLuminance(baseColor, baseLum);
 
     
     // document.getElementById("fixedFilters").style.background = baseColor;
@@ -149,7 +162,13 @@ function ColorLuminance(hex, lum) {
             }
 
 export function init(el, context, config, mediator) {
+    
+    console.log(pageHeadHTML)
+
     el.innerHTML = mainHTML;
+
+    var pageHeadEl = el.querySelector('.js-head-area');
+    pageHeadEl.innerHTML = pageHeadHTML;
 
     var filtersHTML = sectionIds.map(function (sectionId) {
         return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});
@@ -157,6 +176,8 @@ export function init(el, context, config, mediator) {
 
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
+
+    
 
     $$(filtersEl, '.js-filter').forEach(filterEl => {
         var sectionId = filterEl.getAttribute('data-section');
