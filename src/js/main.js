@@ -177,11 +177,11 @@ export function init(el, context, config, mediator) {
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
 
-    // var metaEl = el.querySelector('.meta-container');
-    // metaEl.innerHTML = metaContainerHTML;
+    var metaEl = el.querySelector('.meta-container');
+    metaEl.innerHTML = metaContainerHTML;
 
 
-    //var metaContainerFn = doT.template(metaContainerHTML);
+    var metaContainerFn = doT.template(metaContainerHTML);
 
     
 
