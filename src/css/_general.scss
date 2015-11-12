@@ -30,15 +30,13 @@ a {
 
 .dig-slice__inner {
     clear: left;
-
     margin: 0 auto;
     background-color: white;
     box-sizing: border-box;
-
-    padding: 10px;
+    padding: $gs-gutter/2;
 
     @include mq(mobileLandscape) {
-        padding: 20px;
+        padding: $gs-gutter;
     }
 
     @each $bp in (tablet, desktop, leftCol, wide) {
@@ -67,11 +65,11 @@ a {
 
 .dig-slice__inner__left {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: $gs-baseline;
 
     @include mq(leftCol) {
         box-sizing: border-box;
-        padding-right: 20px;
+        padding-right: $gs-gutter;
         width: 140px;
         float: left;
     }
@@ -92,7 +90,7 @@ a {
 .dig-date {
     @include fs-textSans(1);
     padding-top: 2px;
-    min-height: 48px;
+    min-height: gs-height(1);
     box-sizing: border-box;
     color: #767676;
     border-top: 1px dotted #dfdfdf;
@@ -102,7 +100,7 @@ a {
 .dig-share-container {
     border-bottom: 1px dotted #dfdfdf;
     line-height: 1;
-    padding-bottom: 10px;
+
 
     @include mq(leftCol) {
         border-bottom: 0;

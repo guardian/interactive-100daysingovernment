@@ -1,6 +1,7 @@
 import reqwest from 'reqwest'
 import doT from 'olado/doT'
 import pageHeadHTML from './text/pageHead.html!text'
+import metaContainerHTML from './text/metaContainer.html!text'
 import mainHTML from './text/main.html!text'
 import filterHTML from './text/filter.html!text'
 import sectionHTML from './text/section.html!text'
@@ -33,6 +34,7 @@ var totalCount;
 var baseLum = 0.075;
 
 var pageHeadTemplateFn = doT.template(pageHeadHTML);
+var metaContainerFn = doT.template(metaContainerHTML);
 var filterTemplateFn = doT.template(filterHTML);
 var sectionTemplateFn = doT.template(sectionHTML);
 
@@ -162,8 +164,6 @@ function ColorLuminance(hex, lum) {
             }
 
 export function init(el, context, config, mediator) {
-    
-    console.log(pageHeadHTML)
 
     el.innerHTML = mainHTML;
 
@@ -176,6 +176,12 @@ export function init(el, context, config, mediator) {
 
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
+
+    // var metaEl = el.querySelector('.meta-container');
+    // metaEl.innerHTML = metaContainerHTML;
+
+
+    //var metaContainerFn = doT.template(metaContainerHTML);
 
     
 
