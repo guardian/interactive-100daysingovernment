@@ -37,6 +37,7 @@ var baseLum = 0.075;
 
 var publishedDate;
 var shortURL;
+var globalTitle;
 
 var pageHeadTemplateFn = doT.template(pageHeadHTML);
 var metaContainerFn = doT.template(metaContainerHTML);
@@ -98,7 +99,9 @@ function setTitleColor(headInfo){
 
         headInfo.forEach(item => {
             if(item.Type === 'PageHeader'){
+                  globalTitle = item.Title;
                   document.getElementById("gv-pageHeading").innerHTML = item.Title;
+
                   // document.getElementById("gv-pageHeading").style.background = baseColor;
             }
             if(item.Type === 'Section'){
@@ -203,6 +206,7 @@ export function init(el, context, config, mediator) {
 
     $$(el, '.js-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
+        
         shareEl.addEventListener('click', () => {
             share(network);
         });

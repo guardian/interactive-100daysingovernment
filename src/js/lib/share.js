@@ -1,4 +1,5 @@
-const title = '100 things the Tories did in their first 100 days';
+
+      
 const shareURL = encodeURIComponent(window.guardian.config.page.shortUrl); // TODO: short url
 const hashTag = '#100ToryDays';
 
@@ -7,8 +8,8 @@ const facebookBaseUrl = 'https://www.facebook.com/sharer/sharer.php?ref=responsi
 const googleBaseUrl = 'https://plus.google.com/share?url=';
 
 export default function share(network, extra='') {
-
     
+    var title = document.getElementById("gv-pageHeading").innerHTML;
     var twitterMessage = `${extra}${title} ${hashTag}`;
     var shareWindow;
 
