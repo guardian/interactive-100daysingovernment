@@ -33,6 +33,9 @@ const sectionTitles = {
 var totalCount;
 var baseLum = 0.075;
 
+var publishedDate;
+var shortURL;
+
 var pageHeadTemplateFn = doT.template(pageHeadHTML);
 var metaContainerFn = doT.template(metaContainerHTML);
 var filterTemplateFn = doT.template(filterHTML);
@@ -41,6 +44,10 @@ var sectionTemplateFn = doT.template(sectionHTML);
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days, headInfo) {
+    //set some globals 
+    publishedDate = formatGlobalDate(window.guardian.config.page.webPublicationDate);
+    shortURL = (window.guardian.config.page.shortUrl);
+
     totalCount = days.length;
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
     days.forEach(day => {
@@ -85,17 +92,34 @@ function app(el, days, headInfo) {
     
 }
 
+function formatGlobalDate(n){
+    var n = new Date(n); 
+    
+
+    var locale = "en-gb",
+    d = n.toLocaleString(locale, { weekday: "long", year: "numeric", month: "long",
+        day: "numeric", hour: "numeric", minute: "numeric"});
+
+    d=d.split(",").join("");
+    d=d+" GMT";
+    
+    return d;
+}
+
+
 function setTitleColor(headInfo){
-    headInfo.forEach(item => {
-        if(item.Type === 'PageHeader'){
-              document.getElementById("gv-pageHeading").innerHTML = item.Title;
-              // document.getElementById("gv-pageHeading").style.background = baseColor;
-        }
-        if(item.Type === 'Section'){
-              setColorScheme(setBaseColor(item.Title));
-              // document.getElementById("gv-pageHeading").style.background = baseColor;
-        }
-    });
+     document.getElementById("globalDateContainer").innerHTML = publishedDate;
+
+        headInfo.forEach(item => {
+            if(item.Type === 'PageHeader'){
+                  document.getElementById("gv-pageHeading").innerHTML = item.Title;
+                  // document.getElementById("gv-pageHeading").style.background = baseColor;
+            }
+            if(item.Type === 'Section'){
+                  setColorScheme(setBaseColor(item.Title));
+                  // document.getElementById("gv-pageHeading").style.background = baseColor;
+            }
+        });
 }
 
 function setBaseColor(v){
@@ -180,10 +204,8 @@ export function init(el, context, config, mediator) {
     var metaEl = el.querySelector('.meta-container');
     metaEl.innerHTML = metaContainerHTML;
 
-
     var metaContainerFn = doT.template(metaContainerHTML);
 
-    
 
     $$(filtersEl, '.js-filter').forEach(filterEl => {
         var sectionId = filterEl.getAttribute('data-section');

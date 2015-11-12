@@ -9,7 +9,7 @@ Take this from 'Winter is coming interactive'
 
 5. Make  section array programatic-based on number of entries/10
 
-
+6. Add date stamp to page using window.guardian.config.page.WebPublicationDate needs converting from UTC
 
 
 <div class="content__meta-container content__meta-container--immersive js-content-meta u-cf">
