@@ -6,9 +6,11 @@ import mainHTML from './text/main.html!text'
 import filterHTML from './text/filter.html!text'
 import sectionHTML from './text/section.html!text'
 
+
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 import getQueryVariable from './lib/get-query-var'
+import formatGuardianDate from './lib/format-guardian-date'
 
 
 const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
@@ -45,7 +47,7 @@ var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days, headInfo) {
     //set some globals 
-    publishedDate = formatGlobalDate(window.guardian.config.page.webPublicationDate);
+    publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
     shortURL = (window.guardian.config.page.shortUrl);
 
     totalCount = days.length;
@@ -87,23 +89,7 @@ function app(el, days, headInfo) {
     setTitleColor(headInfo);
 
    // document.querySelector('.l-footer').style.display = 'block';
-
-    
-    
-}
-
-function formatGlobalDate(n){
-    var n = new Date(n); 
-    
-
-    var locale = "en-gb",
-    d = n.toLocaleString(locale, { weekday: "long", year: "numeric", month: "long",
-        day: "numeric", hour: "numeric", minute: "numeric"});
-
-    d=d.split(",").join("");
-    d=d+" GMT";
-    
-    return d;
+  
 }
 
 
