@@ -17,7 +17,7 @@ const sheetURL = sheetPath+sheetKey+sheetFileType;
 
 const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
 const sectionTitles = {
-    'A': 'Top ten',
+    'A': '1-10',
     'B': '11-20',
     'C': '21-30',
     'D': '31-40',

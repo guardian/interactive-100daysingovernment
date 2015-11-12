@@ -150,12 +150,13 @@ a {
 .dig-section-title {
     @include fs-header(1);
     padding-right: 90px;
+    
     @include mq(leftCol) {
         padding-right: 0;
     }
 
     .dig-slice--filters & {
-        color: #617e8e;
+        //color: #FFF;
     }
 }
 
@@ -314,7 +315,6 @@ $day-spacing: 20px;
 
 .dig-days__heading{
     font-weight:700;
-    border-bottom: 1px solid #CC0000;
     // font-size:1em;
 }
 

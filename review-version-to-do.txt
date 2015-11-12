@@ -1,0 +1,4 @@
+1. Sticky nav
+2. Global social
+3. Social in atoms
+4. Video in mobile view (add text link to video for users on 3G/4G mobile network using detect.js)
