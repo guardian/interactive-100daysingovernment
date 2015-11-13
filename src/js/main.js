@@ -12,7 +12,6 @@ import share from './lib/share'
 import getQueryVariable from './lib/get-query-var'
 import formatGuardianDate from './lib/format-guardian-date'
 
-
 const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
 const sheetKey = getQueryVariable('key');
 const sheetFileType = '.json';
@@ -47,6 +46,8 @@ var sectionTemplateFn = doT.template(sectionHTML);
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days, headInfo) {
+
+    console.log(headInfo)
     //set some globals 
     publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
     shortURL = (window.guardian.config.page.shortUrl);
@@ -59,10 +60,10 @@ function app(el, days, headInfo) {
              day.hierarchy = 'B';
         }
       
-
         if (day.videoHL) {
              day.hierarchy = 'H';
         }
+
         if (day.section) {
             sectionDays[day.section].push(day);
         }
@@ -93,6 +94,9 @@ function app(el, days, headInfo) {
         });
     });
 
+    var pageHeadEl = el.querySelector('.js-head-area');
+    pageHeadEl.innerHTML = pageHeadHTML;
+    
     setTitleColor(headInfo);
     setPageDate();
 
@@ -170,33 +174,28 @@ function setColorScheme(baseColor){
 } 
 
 function ColorLuminance(hex, lum) {
-                
-                hex = String(hex).replace(/[^0-9a-f]/gi, ''); // validate hex string
 
-                if (hex.length < 6) {
-                    hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-                }
-                lum = lum || 0;
-                
-                // convert to decimal and change luminosity
-                var rgb = "#", c, i;
-                for (i = 0; i < 3; i++) {
-                    c = parseInt(hex.substr(i*2,2), 16);
-                    c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-                    rgb += ("00"+c).substr(c.length);
-                }
+        hex = String(hex).replace(/[^0-9a-f]/gi, ''); // validate hex string
 
-                return rgb;
-            }
+        if (hex.length < 6) {
+            hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+        }
+        lum = lum || 0;
+        
+        // convert to decimal and change luminosity
+        var rgb = "#", c, i;
+        for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i*2,2), 16);
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+            rgb += ("00"+c).substr(c.length);
+        }
+
+        return rgb;
+}
 
 export function init(el, context, config, mediator) {
 
-
-
     el.innerHTML = mainHTML;
-
-    var pageHeadEl = el.querySelector('.js-head-area');
-    pageHeadEl.innerHTML = pageHeadHTML;
 
     var filtersHTML = sectionIds.map(function (sectionId) {
         return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});
@@ -226,8 +225,6 @@ export function init(el, context, config, mediator) {
             share(network);
         });
     });
-
-
 
     reqwest({
         url: sheetURL,
