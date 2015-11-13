@@ -27,8 +27,15 @@
                                 </span>
                            <span class="dig-days__heading" data-count="{{=Math.ceil((day.number/10))}}">{{=day.title}}</span>
                             {{=day.text}}
-                        </p>
 
+
+                        <span class="dig-share-container" style="display:block; width:100%; padding-top:12px;">
+                            <button class="dig-share atom-share" data-hierarchy="sub-facebook" data-count="{{=day.number}}" data-network="facebook"></button>
+                            <button class="dig-share atom-share" data-hierarchy="sub-twitter" data-count="{{=day.number}}" data-network="twitter"></button>
+                            <button class="dig-share atom-share" data-hierarchy="sub-email" data-count="{{=day.number}}" data-network="email" ></button>
+                        </span> 
+                        </p>
+                        
                     
                     {{?day.imageHL}}
                         <div class="dig-days__day__img">

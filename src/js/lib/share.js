@@ -1,7 +1,7 @@
 
       
-const shareURL = encodeURIComponent(window.guardian.config.page.shortUrl); // TODO: short url
-const hashTag = '#100ToryDays';
+const shareURL = encodeURIComponent(window.guardian.config.page.shortUrl); // short url will only work in a guardian page
+const hashTag = '#GuardianReviewOfYear';
 
 const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
 const facebookBaseUrl = 'https://www.facebook.com/sharer/sharer.php?ref=responsive&u=';
@@ -10,7 +10,15 @@ const googleBaseUrl = 'https://plus.google.com/share?url=';
 export default function share(network, extra='') {
     
     var title = document.getElementById("gv-pageHeading").innerHTML;
-    var twitterMessage = `${extra}${title} ${hashTag}`;
+
+    if(extra){
+        var extraStr=(" - Number "+extra.number+". "+extra.title);
+        extra=extraStr;
+
+    }
+    
+    
+    var twitterMessage = `${title} ${extra} ${hashTag}`;
     var shareWindow;
 
     if (network === 'twitter') {

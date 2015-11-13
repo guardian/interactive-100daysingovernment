@@ -87,25 +87,7 @@ a {
     @include fs-header(3);
 }
 
-.dig-date {
-    @include fs-textSans(1);
-    padding-top: 2px;
-    min-height: gs-height(1);
-    box-sizing: border-box;
-    color: #767676;
-    border-top: 1px dotted #dfdfdf;
-    border-bottom: 1px dotted #dfdfdf;
-}
 
-.dig-share-container {
-    border-bottom: 1px dotted #dfdfdf;
-    line-height: 1;
-
-
-    @include mq(leftCol) {
-        border-bottom: 0;
-    }
-}
 
 .dig-title {
     @include f-headline;
@@ -293,7 +275,7 @@ $day-spacing: 20px;
 
     @include mq(desktop) {
         width: calc(25% - #{$day-spacing});
-        height: gs-height(5);
+        height: gs-height(6);
 
         &.dig-days__day--B,
         &.dig-days__day--M {
@@ -394,11 +376,11 @@ $day-spacing: 20px;
         display: table-cell;
 
         .dig-days__day--M & {
-            width: 220px;
+            width: gs-span(3);
         }
 
         .dig-days__day--H & {
-            width: 700px;
+            width: gs-span(9);
         }
     }
 

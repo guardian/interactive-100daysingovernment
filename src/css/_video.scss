@@ -1,13 +1,13 @@
 .day__youtubevideowrap, .day__videocontent {
     float: right;
     width: 100%;
-    max-width: 700px;
+    max-width: gs-span(9);
     margin: 0 auto 12px;
 }
 
 .day__video-container {
     position:relative;
-    padding-bottom:56.25%;
+    padding-bottom:52%; //56.25%;
     padding-top:30px;
     height:0;
     overflow:hidden;

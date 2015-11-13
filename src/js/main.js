@@ -68,8 +68,6 @@ function app(el, days, headInfo) {
         }
     });
 
-    
-
     var sectionsHTML = sectionIds.map(function (sectionId) {
         return sectionTemplateFn({
             'id': sectionId,
@@ -87,7 +85,16 @@ function app(el, days, headInfo) {
         });
     });
 
+    $$(sectionsEl, '.atom-share').forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        var key = shareEl.getAttribute('data-count')
+        shareEl.addEventListener('click', () => {
+            share(network, days[key-1]);
+        });
+    });
+
     setTitleColor(headInfo);
+    setPageDate();
 
    // document.querySelector('.l-footer').style.display = 'block';
   
@@ -95,8 +102,7 @@ function app(el, days, headInfo) {
 
 
 function setTitleColor(headInfo){
-     document.getElementById("globalDateContainer").innerHTML = publishedDate;
-
+     
         headInfo.forEach(item => {
             if(item.Type === 'PageHeader'){
                   globalTitle = item.Title;
@@ -109,6 +115,13 @@ function setTitleColor(headInfo){
                   // document.getElementById("gv-pageHeading").style.background = baseColor;
             }
         });
+}
+
+function setPageDate(){
+    //document.getElementById("globalDateContainer").innerHTML = publishedDate;
+
+    var a = document.getElementsByClassName('dig-global-date-container');
+    [].forEach.call(a, function (item) {  item.innerHTML = publishedDate;});
 }
 
 function setBaseColor(v){
@@ -178,6 +191,8 @@ function ColorLuminance(hex, lum) {
 
 export function init(el, context, config, mediator) {
 
+
+
     el.innerHTML = mainHTML;
 
     var pageHeadEl = el.querySelector('.js-head-area');
@@ -190,7 +205,7 @@ export function init(el, context, config, mediator) {
     var filtersEl = el.querySelector('.js-filters');
     filtersEl.innerHTML = filtersHTML;
 
-    var metaEl = el.querySelector('.meta-container');
+    var metaEl = el.querySelector('.dig-meta-container');
     metaEl.innerHTML = metaContainerHTML;
 
     var metaContainerFn = doT.template(metaContainerHTML);
@@ -206,11 +221,13 @@ export function init(el, context, config, mediator) {
 
     $$(el, '.js-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-        
+        console.log(el)
         shareEl.addEventListener('click', () => {
             share(network);
         });
     });
+
+
 
     reqwest({
         url: sheetURL,
