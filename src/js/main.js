@@ -47,7 +47,6 @@ var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, days, headInfo) {
 
-    console.log(headInfo)
     //set some globals 
     publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
     shortURL = (window.guardian.config.page.shortUrl);
@@ -55,18 +54,17 @@ function app(el, days, headInfo) {
     totalCount = days.length;
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
     days.forEach(day => {
-        
-        if ((day.hierarchy === 'M' || day.hierarchy === 'H') && (!day.imageHL )) {
-             day.hierarchy = 'B';
-        }
-      
-        if (day.videoHL) {
+
+        if (day.YouTubeVideoKey) {
+             day.Video = "https://www.youtube.com/embed/"+day.YouTubeVideoKey;
              day.hierarchy = 'H';
         }
-
-        if (day.section) {
-            sectionDays[day.section].push(day);
-        }
+        
+        //group entries in bands of 10
+        var n = getSectionRef(day.number);
+        day.section = sectionIds[n];
+        sectionDays[day.section].push(day);
+        
     });
 
     var sectionsHTML = sectionIds.map(function (sectionId) {
@@ -105,6 +103,16 @@ function app(el, days, headInfo) {
   
 }
 
+function getSectionRef(n){
+    // subtract 1 so that 10-20-30-40-50-60-70-80-90 are in right group
+    n-=1;
+    var k = Math.floor(n/10)
+    
+
+    return k;
+
+    
+}
 
 function setPageFurniture(headInfo){
      

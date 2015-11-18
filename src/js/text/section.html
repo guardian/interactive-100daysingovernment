@@ -13,7 +13,7 @@
         <ul class="dig-days">
             {{~it.days :day:i}}
                 <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.number/10))}}">
-                    {{?day.videoHL}}
+                    {{?day.Video}}
                             <div class="day__videocontent">
                                 <div class="day__video-container">
                                     <iframe src="{{=day.Video}}" width="700" height="360" frameborder="0"></iframe>
@@ -37,9 +37,9 @@
                         </p>
                         
                     
-                    {{?day.imageHL}}
+                    {{?day.imagePath}}
                         <div class="dig-days__day__img">
-                            <img src="{{=day.imageSizeXL}}"/>
+                            <img src="{{=day.imagePath}}"/>
                         </div>
                     {{?}}
                     
