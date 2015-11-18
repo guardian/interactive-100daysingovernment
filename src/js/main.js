@@ -141,7 +141,11 @@ function setPageDate(){
     //document.getElementById("globalDateContainer").innerHTML = publishedDate;
 
     var a = document.getElementsByClassName('dig-global-date-container');
-    [].forEach.call(a, function (item) {  item.innerHTML = publishedDate;});
+        [].forEach.call(a, function (item) {  item.innerHTML = publishedDate;});
+
+    var b = document.getElementsByClassName('element element-interactive interactive');    
+        [].forEach.call(b, function (item) {  console.log(item.getAttribute('data-alt'))});
+
 }
 
 function setBaseColor(v){
@@ -236,7 +240,7 @@ export function init(el, context, config, mediator) {
 
     $$(el, '.js-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
-        console.log(el)
+        
         shareEl.addEventListener('click', () => {
             share(network);
         });
