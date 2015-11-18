@@ -1,12 +1,19 @@
 .dig-slice__inner__graphic{
-    
     font: "Guardian Egyptian Web", serif;
-    font-size: 0.8em;
+    font-size: 1.4em;
     color: white;
-    line-height:1em;
-
-
+    line-height:1.5em;
 }
+
+.dig-slice__inner__graphic a{
+    color: rgba(255,255,255, 0.6);
+}
+
+.dig-slice__inner__graphic a:hover{
+    color: rgba(255,255,255, 0.8);
+}
+
+
 .dig-slice__inner__graphic h1{
     font-family: "Guardian Egyptian Web", serif; 
     font-weight:200;

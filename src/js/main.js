@@ -79,6 +79,7 @@ function app(el, days, headInfo) {
 
     var sectionsEl = el.querySelector('.js-sections');
     sectionsEl.innerHTML = sectionsHTML;
+
     $$(sectionsEl, '.js-back-to-top').forEach(sectionEl => {
         sectionEl.addEventListener('click', evt => {
             evt.preventDefault();
@@ -97,7 +98,7 @@ function app(el, days, headInfo) {
     var pageHeadEl = el.querySelector('.js-head-area');
     pageHeadEl.innerHTML = pageHeadHTML;
     
-    setTitleColor(headInfo);
+    setPageFurniture(headInfo);
     setPageDate();
 
    // document.querySelector('.l-footer').style.display = 'block';
@@ -105,12 +106,19 @@ function app(el, days, headInfo) {
 }
 
 
-function setTitleColor(headInfo){
+function setPageFurniture(headInfo){
      
         headInfo.forEach(item => {
             if(item.Type === 'PageHeader'){
                   globalTitle = item.Title;
                   document.getElementById("gv-pageHeading").innerHTML = item.Title;
+
+                  // document.getElementById("gv-pageHeading").style.background = baseColor;
+            }
+
+            if(item.Type === 'Standfirst'){
+                 
+                  document.getElementById("standfirstHolder").innerHTML = item.Copy;
 
                   // document.getElementById("gv-pageHeading").style.background = baseColor;
             }

@@ -24,6 +24,24 @@
 
 } 
 
+.dig-meta-container__inner__right{
+    position: relative;
+    margin-bottom: 0;
+    margin-left:$gs-gutter/2;
+
+    @include mq(leftCol) {
+        box-sizing: border-box;
+        padding-right: none;
+        width: gs-span(2);
+        float: right;
+        
+    }
+
+    @include mq(wide) {
+        width: gs-span(3);
+    }
+}
+
 .dig-meta-container__inner__left{
     position: relative;
     margin-bottom: 0;
