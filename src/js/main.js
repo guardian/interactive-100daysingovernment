@@ -17,8 +17,8 @@ const sheetKey = getQueryVariable('key');
 const sheetFileType = '.json';
 const sheetURL = sheetPath+sheetKey+sheetFileType;
 
-const sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
-const sectionTitles = {
+var sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
+var sectionTitles = {
     'A': '1-10',
     'B': '11-20',
     'C': '21-30',
@@ -31,7 +31,7 @@ const sectionTitles = {
     'J': '91-100'
 };
 
-var totalCount;
+var requiredSections;
 var baseLum = 0.075;
 
 var publishedDate;
@@ -50,9 +50,15 @@ function app(el, days, headInfo) {
     //set some globals 
     publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
     shortURL = (window.guardian.config.page.shortUrl);
+    requiredSections = Math.ceil(days.length/10); //
 
-    totalCount = days.length;
+    console.log(requiredSections)
+
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
+
+    sectionIds = sectionIds.slice(0, requiredSections);
+
+
     days.forEach(day => {
 
         if (day.YouTubeVideoKey) {
@@ -106,36 +112,31 @@ function app(el, days, headInfo) {
 function getSectionRef(n){
     // subtract 1 so that 10-20-30-40-50-60-70-80-90 are in right group
     n-=1;
-    var k = Math.floor(n/10)
-    
-
-    return k;
-
-    
+    var k = Math.floor(n/10);
+    return k;  
 }
 
 function setPageFurniture(headInfo){
      
         headInfo.forEach(item => {
+
             if(item.Type === 'PageHeader'){
                   globalTitle = item.Title;
                   document.getElementById("gv-pageHeading").innerHTML = item.Title;
-
-                  // document.getElementById("gv-pageHeading").style.background = baseColor;
             }
 
             if(item.Type === 'Standfirst'){
-                 
                   document.getElementById("standfirstHolder").innerHTML = item.Copy;
-
-                  // document.getElementById("gv-pageHeading").style.background = baseColor;
             }
+
             if(item.Type === 'Section'){
                   setColorScheme(setBaseColor(item.Title));
-                  // document.getElementById("gv-pageHeading").style.background = baseColor;
             }
+
         });
+
 }
+
 
 function setPageDate(){
     //document.getElementById("globalDateContainer").innerHTML = publishedDate;
@@ -250,6 +251,6 @@ export function init(el, context, config, mediator) {
         url: sheetURL,
         type: 'json',
         crossOrigin: true,
-        success: resp => app(el, resp.sheets.Sheet1, resp.sheets.SheetCopy)
+        success: resp => app(el, resp.sheets.listEntries, resp.sheets.standfirstAndTitle)
     });
 }
