@@ -130,7 +130,6 @@ a {
 
 .dig-section-title-sub {
 
-
     @include fs-header(1);
         padding-right: 90px;
     
@@ -156,6 +155,10 @@ a {
     .dig-slice--filters & {
         //color: #FFF;
     }
+}
+
+.dig-dark-font{
+    color:#222;
 }
 
 .dig-section-title a{
@@ -359,11 +362,16 @@ $day-spacing: 20px;
 }
 
 .dig-days__day__text {
-    padding: 5px 20px 5px 5px;
+    padding: $gs-baseline/2 $gs-gutter $gs-baseline/2 0;
     min-height: 30px;
+    @include mq(tablet) {
+        padding: $gs-baseline/2 gs-span(2) $gs-baseline/2 $gs-gutter;
+    }
     @include mq(desktop) {
         display: table-cell;
         vertical-align: top;
+        padding: $gs-baseline/2 $gs-gutter $gs-baseline/2 gs-span(1);
+        
     }
 
     // &::before {
@@ -379,7 +387,7 @@ $day-spacing: 20px;
 
     // }
 
-    padding-left: 60px;
+    
 
     @include mq(mobileLandscape) {
         padding-left: 0;
@@ -421,6 +429,24 @@ $day-spacing: 20px;
     & > img {
         width: 100%;
     }
+}
+
+.show-tablet{
+    display:block;
+
+    @include mq(desktop) {
+        display: none;
+    }
+}
+
+.show-desktop{
+    display:none;
+
+    @include mq(desktop) {
+        display: block;
+    }
+
+
 }
 
 

@@ -1,7 +1,7 @@
 <div class="dig-slice" id="dig-section-{{=it.id}}">
     <div class="dig-slice__inner">
     <div class="dig-slice__inner__left">
-        <h2 class="dig-section-title">{{=it.title}}</h2>
+        <h2 class="dig-section-title" style="color:#333;">{{=it.title}}</h2>
         <a class="dig-back-to-top js-back-to-top" href="#">
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14"><path fill="currentColor" d="M0.5,7 L5.75,2.5 L5.75,14 L7.25,14 L7.25,2.5 L12.5,7 L13,6 L7.25,0 L5.75,6e-17 L0,6 L0.5,7 L0.5,7 Z"/></svg>
@@ -14,7 +14,7 @@
             {{~it.days :day:i}}
                 <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.number/10))}}">
                     {{?day.Video}}
-                            <div class="day__videocontent">
+                            <div class="day__videocontent show-desktop">
                                 <div class="day__video-container">
                                     <iframe src="{{=day.Video}}" width="700" height="360" frameborder="0"></iframe>
                                 </div>
@@ -41,6 +41,14 @@
                         <div class="dig-days__day__img">
                             <img src="{{=day.imagePath}}"/>
                         </div>
+                    {{?}}
+
+                    {{?day.Video}}
+                            <div class="day__videocontent show-tablet">
+                                <div class="day__video-container">
+                                    <iframe src="{{=day.Video}}" width="700" height="360" frameborder="0"></iframe>
+                                </div>
+                            </div>
                     {{?}}
                     
                 </li>
