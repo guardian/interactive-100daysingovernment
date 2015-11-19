@@ -52,7 +52,6 @@ function app(el, days, headInfo) {
     shortURL = (window.guardian.config.page.shortUrl);
     requiredSections = Math.ceil(days.length/10); //
 
-    console.log(requiredSections)
 
     var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
 
@@ -104,6 +103,19 @@ function app(el, days, headInfo) {
     
     setPageFurniture(headInfo);
     setPageDate();
+
+    var filtersHTML = sectionIds.map(function (sectionId) {
+    return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});}).join('');
+    var filtersEl = el.querySelector('.js-filters');
+    filtersEl.innerHTML = filtersHTML;
+
+    $$(filtersEl, '.js-filter').forEach(filterEl => {
+        var sectionId = filterEl.getAttribute('data-section');
+        filterEl.addEventListener('click', evt => {
+            evt.preventDefault();
+            scrollTo(el.querySelector('#dig-section-' + sectionId));
+        });
+    });
 
    // document.querySelector('.l-footer').style.display = 'block';
   
@@ -216,28 +228,13 @@ function ColorLuminance(hex, lum) {
 
 export function init(el, context, config, mediator) {
 
-    el.innerHTML = mainHTML;
-
-    var filtersHTML = sectionIds.map(function (sectionId) {
-        return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});
-    }).join('');
-
-    var filtersEl = el.querySelector('.js-filters');
-    filtersEl.innerHTML = filtersHTML;
+    el.innerHTML = mainHTML;   
 
     var metaEl = el.querySelector('.dig-meta-container');
     metaEl.innerHTML = metaContainerHTML;
 
     var metaContainerFn = doT.template(metaContainerHTML);
 
-
-    $$(filtersEl, '.js-filter').forEach(filterEl => {
-        var sectionId = filterEl.getAttribute('data-section');
-        filterEl.addEventListener('click', evt => {
-            evt.preventDefault();
-            scrollTo(el.querySelector('#dig-section-' + sectionId));
-        });
-    });
 
     $$(el, '.js-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
@@ -253,4 +250,6 @@ export function init(el, context, config, mediator) {
         crossOrigin: true,
         success: resp => app(el, resp.sheets.listEntries, resp.sheets.standfirstAndTitle)
     });
+
+
 }
