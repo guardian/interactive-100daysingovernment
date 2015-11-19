@@ -10,10 +10,11 @@ import sectionHTML from './text/section.html!text'
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 import getQueryVariable from './lib/get-query-var'
+import getDataAltVariable from './lib/get-data-alt-var'
 import formatGuardianDate from './lib/format-guardian-date'
 
 const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
-const sheetKey = getQueryVariable('key');
+const sheetKey = getDataAltVariable(); //getQueryVariable('key')
 const sheetFileType = '.json';
 const sheetURL = sheetPath+sheetKey+sheetFileType;
 
@@ -156,9 +157,6 @@ function setPageDate(){
     var a = document.getElementsByClassName('dig-global-date-container');
         [].forEach.call(a, function (item) {  item.innerHTML = publishedDate;});
 
-    var b = document.getElementsByClassName('element element-interactive interactive');    
-        [].forEach.call(b, function (item) {  console.log(item.getAttribute('data-alt'))});
-
 }
 
 function setBaseColor(v){
@@ -180,11 +178,6 @@ function setColorScheme(baseColor){
     document.getElementById("featureAreaBG").style.background = ColorLuminance(baseColor, baseLum);
     document.getElementById("featureArea").style.background = ColorLuminance(baseColor, baseLum);
 
-    
-    // document.getElementById("fixedFilters").style.background = baseColor;
-    // document.getElementById("fixedFiltersBG").style.background = baseColor;
-    // document.getElementById("featureAreaBG").style.background = ColorLuminance(baseColor, baseLum);
-    // document.getElementById("featureArea").style.background = ColorLuminance(baseColor, baseLum);
 
     var a = document.getElementsByClassName("dig-filters__filter__link__circle");
     [].forEach.call(a, function (item) { item.style.color = baseColor; });
@@ -199,11 +192,6 @@ function setColorScheme(baseColor){
     [].forEach.call(a4, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.color = c;});
 
 
-    //border-top: 1px solid #94bfdd;
-
-//     var color = window.getComputedStyle(
-//     document.querySelector('.element'), ':before'
-// ).getPropertyValue('color')
 } 
 
 function ColorLuminance(hex, lum) {
