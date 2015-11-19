@@ -127,9 +127,12 @@ a {
     }
 }
 
-.dig-section-title {
+
+.dig-section-title-sub {
+
+
     @include fs-header(1);
-    padding-right: 90px;
+        padding-right: 90px;
     
     @include mq(leftCol) {
         padding-right: 0;
@@ -137,6 +140,37 @@ a {
 
     .dig-slice--filters & {
         //color: #FFF;
+    }
+}
+
+.dig-section-title {
+
+    color: rgba(255, 255, 255, 0.8);
+    @include fs-header(3);
+        padding-right: 90px;
+    
+    @include mq(leftCol) {
+        padding-right: 0;
+    }
+
+    .dig-slice--filters & {
+        //color: #FFF;
+    }
+}
+
+.dig-section-title a{
+    color: #FFF;
+    opacity: 0.8;
+    transition: opacity 0.1s ease-out;
+
+    &,
+    &:hover,
+    &:active {
+        color: white;
+    }
+
+    &:hover {
+        opacity: 1;
     }
 }
 

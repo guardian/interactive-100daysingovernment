@@ -1,8 +1,12 @@
 .dig-slice__inner__graphic{
     font: "Guardian Egyptian Web", serif;
-    font-size: 1.4em;
     color: white;
-    line-height:1.5em;
+
+    @include mq(desktop){
+        font-size: 1.4em;
+        line-height:1.5em;
+    }
+    
 }
 
 .dig-slice__inner__graphic a{
@@ -17,12 +21,15 @@
 .dig-slice__inner__graphic h1{
     font-family: "Guardian Egyptian Web", serif; 
     font-weight:200;
-    font-size: 4em;
+    // font-size: 4em;
     line-height:1em;
     margin:0;
     color: white;
     padding-bottom: gs-height(1);
-    
+
+    @include mq(mobileLandscape) {
+        font-size: 3em;
+    }
 }
 
 .dig-slice__inner__graphic h2{
@@ -32,7 +39,7 @@
     font-weight:600;
     font-size: 1rem;
     line-height:1.2em;
-    color: white;
+    color: red;
     
 }
 

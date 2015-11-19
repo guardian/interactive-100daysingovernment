@@ -6,7 +6,6 @@ import mainHTML from './text/main.html!text'
 import filterHTML from './text/filter.html!text'
 import sectionHTML from './text/section.html!text'
 
-
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
 import getQueryVariable from './lib/get-query-var'
@@ -143,6 +142,12 @@ function setPageFurniture(headInfo){
             }
 
             if(item.Type === 'Section'){
+                var s = getSubTitleHTML(item);
+                console.log(s)
+                document.getElementById("gvSectionSubHead").innerHTML = s;
+            }
+
+            if(item.Type === 'GlobalSection'){
                   setColorScheme(setBaseColor(item.Title));
             }
 
@@ -150,6 +155,10 @@ function setPageFurniture(headInfo){
 
 }
 
+
+function getSubTitleHTML(item){
+    return "<a href='"+item.Link+"'>"+item.Title+"</a>";
+}
 
 function setPageDate(){
     //document.getElementById("globalDateContainer").innerHTML = publishedDate;
