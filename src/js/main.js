@@ -19,7 +19,7 @@ const sheetURL = sheetPath+sheetKey+sheetFileType;
 
 var sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
 var sectionTitles = {
-    'A': '1-10',
+    'A': '31-40',
     'B': '11-20',
     'C': '21-30',
     'D': '31-40',
@@ -130,6 +130,8 @@ function getSectionRef(n){
 
 function setPageFurniture(headInfo){
      
+     console.log(headInfo)
+
         headInfo.forEach(item => {
 
             if(item.Type === 'PageHeader'){
