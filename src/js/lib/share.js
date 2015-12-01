@@ -12,7 +12,7 @@ export default function share(network, extra='') {
     var title = document.getElementById("gv-pageHeading").innerHTML;
 
     if(extra){
-        var extraStr=(" - Number "+extra.number+". "+extra.title);
+        var extraStr=(" - Number "+extra.displayNumber+". "+extra.title);
         extra=extraStr;
 
     }

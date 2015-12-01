@@ -19,7 +19,7 @@ const sheetURL = sheetPath+sheetKey+sheetFileType;
 
 var sectionIds = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J'];
 var sectionTitles = {
-    'A': '31-40',
+    'A': '1-10',
     'B': '11-20',
     'C': '21-30',
     'D': '31-40',
@@ -30,6 +30,7 @@ var sectionTitles = {
     'I': '81-90',
     'J': '91-100'
 };
+var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
 
 var requiredSections;
 var baseLum = 0.075;
@@ -45,17 +46,39 @@ var sectionTemplateFn = doT.template(sectionHTML);
 
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
+function getMaxNumber(a){
+    var n = 0;
+    a.forEach(item => {
+        if(item.displayNumber > n){ n = item.displayNumber }
+    })
+
+    return (Math.ceil(n)/10);
+}
+
+function getMinNumber(a, n){
+   var k = n;
+    a.forEach(item => {
+        if(item.displayNumber/10 < k){ k = item.displayNumber/10 }
+    })
+
+    return (Math.floor(k));
+}
+
+
 function app(el, days, headInfo) {
 
     //set some globals 
     publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
     shortURL = (window.guardian.config.page.shortUrl);
-    requiredSections = Math.ceil(days.length/10); //
+    requiredSections = Math.ceil(days.length/10); 
 
+    var maxSlice = getMaxNumber(days);
 
-    var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
+    var minSlice = getMinNumber(days, maxSlice);
 
-    sectionIds = sectionIds.slice(0, requiredSections);
+    sectionIds = sectionIds.slice(0, maxSlice);
+
+    console.log(minSlice, maxSlice, sectionIds)
 
 
     days.forEach(day => {
@@ -66,21 +89,31 @@ function app(el, days, headInfo) {
         }
         
         //group entries in bands of 10
-        var n = getSectionRef(day.number);
+
+        var n = getSectionRef(day.displayNumber);
         day.section = sectionIds[n];
         sectionDays[day.section].push(day);
         
     });
 
     var sectionsHTML = sectionIds.map(function (sectionId) {
+        
+        if(sectionDays[sectionId].length === 0){ 
+            console.log(sectionId)
+        
+        }
         return sectionTemplateFn({
+           
             'id': sectionId,
             'title': sectionTitles[sectionId],
-            'days': sectionDays[sectionId]
+            'days': sectionDays[sectionId],
+            'showing':(sectionDays[sectionId].length === 0)
+
         });
     }).join('');
 
     var sectionsEl = el.querySelector('.js-sections');
+
     sectionsEl.innerHTML = sectionsHTML;
 
     $$(sectionsEl, '.js-back-to-top').forEach(sectionEl => {
