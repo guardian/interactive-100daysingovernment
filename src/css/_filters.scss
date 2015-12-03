@@ -38,6 +38,7 @@ $day-spacing: $gs-gutter;
     line-height: 1em;
     opacity: 0.8;
     transition: opacity 0.1s ease-out;
+    text-decoration: none;
 
     &,
     &:hover,
@@ -49,6 +50,15 @@ $day-spacing: $gs-gutter;
     &:hover {
         opacity: 1;
     }
+}
+
+
+.dig-filters__filter__link-disabled {
+    display: block;
+    line-height: 1em;
+    color: white;
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .dig-filters__filter__link__text {

@@ -80,12 +80,15 @@ function app(el, days, headInfo) {
 
     console.log(minSlice, maxSlice, sectionIds)
 
+    var k = 0;
 
     days.forEach(day => {
-
+        k++;
+        day.k = k; 
         if (day.YouTubeVideoKey) {
              day.Video = "https://www.youtube.com/embed/"+day.YouTubeVideoKey;
              day.hierarchy = 'H';
+
         }
         
         //group entries in bands of 10
@@ -98,10 +101,6 @@ function app(el, days, headInfo) {
 
     var sectionsHTML = sectionIds.map(function (sectionId) {
         
-        if(sectionDays[sectionId].length === 0){ 
-            console.log(sectionId)
-        
-        }
         return sectionTemplateFn({
            
             'id': sectionId,
@@ -138,16 +137,18 @@ function app(el, days, headInfo) {
     setPageDate();
 
     var filtersHTML = sectionIds.map(function (sectionId) {
-    return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId]});}).join('');
-    var filtersEl = el.querySelector('.js-filters');
-    filtersEl.innerHTML = filtersHTML;
 
-    $$(filtersEl, '.js-filter').forEach(filterEl => {
-        var sectionId = filterEl.getAttribute('data-section');
-        filterEl.addEventListener('click', evt => {
-            evt.preventDefault();
-            scrollTo(el.querySelector('#dig-section-' + sectionId));
-        });
+       return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId], 'showing':(sectionDays[sectionId].length === 0)});}).join('');
+      
+            var filtersEl = el.querySelector('.js-filters');
+            filtersEl.innerHTML = filtersHTML;
+
+            $$(filtersEl, '.js-filter').forEach(filterEl => {
+                var sectionId = filterEl.getAttribute('data-section');
+                filterEl.addEventListener('click', evt => {
+                    evt.preventDefault();
+                    scrollTo(el.querySelector('#dig-section-' + sectionId));
+                });
     });
 
    // document.querySelector('.l-footer').style.display = 'block';
