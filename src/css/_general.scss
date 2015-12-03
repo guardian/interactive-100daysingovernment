@@ -291,9 +291,9 @@ $day-spacing: 20px;
     margin: 0 $day-spacing $day-spacing 0;
     box-sizing: border-box;
 
-    &.dig-days__day--H:first-child {
-        border-top: 0 !important;
-    }
+    // &.dig-days__day--H:first-child {
+    //     border-top: 0 !important;
+    // }
 
     width: 100%;
     min-height: 132px;

@@ -2,7 +2,7 @@
 
 export default function formatGuardianDate(n){
     var n = new Date(n); 
-    
+	    
 
     var locale = "en-gb",
     d = n.toLocaleString(locale, { weekday: "long", year: "numeric", month: "long",

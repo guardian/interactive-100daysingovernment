@@ -68,8 +68,8 @@ function getMinNumber(a, n){
 function app(el, days, headInfo) {
 
     //set some globals 
-    publishedDate = formatGuardianDate(window.guardian.config.page.webPublicationDate);
-    shortURL = (window.guardian.config.page.shortUrl);
+    publishedDate = (window.guardian.config.page.webPublicationDate) ? formatGuardianDate(window.guardian.config.page.webPublicationDate) : "&nbsp;";
+    shortURL = (window.guardian.config.page.shortUrl) ? (window.guardian.config.page.shortUrl) : "http://www.theguardian.com";
     requiredSections = Math.ceil(days.length/10); 
 
     var maxSlice = getMaxNumber(days);
