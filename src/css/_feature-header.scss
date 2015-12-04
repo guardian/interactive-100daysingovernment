@@ -21,15 +21,15 @@
 .dig-slice__inner__graphic h1{
     font-family: "Guardian Egyptian Web", serif; 
     font-weight:200;
-    // font-size: 4em;
+    font-size:2.75rem;
     line-height:1em;
     margin:0;
     color: white;
-    padding-bottom: gs-height(1);
-    max-width:740px;
+    padding-bottom: $gs-baseline;
+    max-width: gs-span(8);
 
     @include mq(mobileLandscape) {
-        font-size: 3em;
+        //font-size: 3em;
     }
 }
 
@@ -55,6 +55,8 @@
 }
 
 .gv-highlight-holder{
+    font-family: "Guardian Egyptian Web", serif; 
+    font-size: 1.125rem;
     width:100%;
     max-width: gs-span(8);
 }
@@ -65,5 +67,30 @@
 
 .dig-slice__inner__{
     height: gs-height(4);
+
+}
+
+
+
+.gv-highlight-holder a, .gv-highlight-holder a:hover, .gv-highlight-holder a:active{
+    text-decoration: none !important;
+    border-bottom: 0.0625rem solid #dcdcdc;
+    border-bottom-color: rgba(255,255,255,0.3)
+}
+.gv-highlight-holder a:hover, .gv-highlight-holder a:active{
+    -webkit-transition: border-color .15s ease-out;
+    transition: border-color .15s ease-out;
+}
+
+.gv-highlight-holder a:before{
+    display: inline-block;
+    content: '';
+    -webkit-border-radius: 0.375rem;
+    border-radius: 0.375rem;
+    height: 0.75rem;
+    width: 0.75rem;
+    margin-right: 0.25rem;
+    background-color: rgba(255,255,255,0.3);
+    text-decoration: none !important;
 
 }

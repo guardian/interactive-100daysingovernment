@@ -3,9 +3,9 @@ figure.interactive {
     margin: 0;
     padding: 0;
 
+    font-size:12px;
 
-
-    @include fs-bodyCopy(2);
+    //@include fs-bodyCopy(2);
 }
 
 a {
@@ -130,7 +130,7 @@ a {
 
 .dig-section-title-sub {
 
-    @include fs-header(1);
+    @include fs-header(2);
         padding-right: 90px;
     
     @include mq(leftCol) {
@@ -145,7 +145,7 @@ a {
 .dig-section-title {
 
     color: rgba(255, 255, 255, 0.8);
-    @include fs-header(3);
+    @include fs-header(4);
         padding-right: 90px;
     
     @include mq(leftCol) {
@@ -162,18 +162,19 @@ a {
 }
 
 .dig-section-title a{
-    color: #FFF;
-    opacity: 0.8;
+    color: #fdadba;
+    opacity: 0.9;
     transition: opacity 0.1s ease-out;
 
     &,
     &:hover,
     &:active {
-        color: white;
+        color: #fdadba;
     }
 
     &:hover {
         opacity: 1;
+        text-decoration:underline;
     }
 }
 
@@ -346,12 +347,13 @@ $day-spacing: 20px;
         font-size: 30px;
         line-height: 1;
         padding-right: $gs-gutter/2;
+        font-weight:700;
         
         &.dig-days_day__number--B{
-            font-size: 40px;
+            font-size: 36px;
         }
         &.dig-days_day__number--M {
-            font-size: 50px;
+            font-size: 48px;
            // width: 80px;
         }
 

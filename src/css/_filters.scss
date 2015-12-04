@@ -16,6 +16,7 @@ $day-spacing: $gs-gutter;
     font-family: "Guardian Egyptian Web", serif;
     width: 30%;
     float: left;
+    font-size:1.4em;
     margin-bottom: $gs-baseline;
 
     @include mq(tablet) {
@@ -35,7 +36,7 @@ $day-spacing: $gs-gutter;
 
 .dig-filters__filter__link {
     display: block;
-    line-height: 1em;
+
     opacity: 0.8;
     transition: opacity 0.1s ease-out;
     text-decoration: none;
@@ -59,6 +60,10 @@ $day-spacing: $gs-gutter;
     color: white;
     opacity: 0.3;
     pointer-events: none;
+}
+
+.dig-filters__filter__link-disabled, .dig-filters__filter__link {
+        line-height: 1.5em;
 }
 
 .dig-filters__filter__link__text {

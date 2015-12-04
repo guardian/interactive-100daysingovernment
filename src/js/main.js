@@ -34,11 +34,13 @@ var sectionTitles = {
 var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
 
 var requiredSections;
-var baseLum = 0.075;
+var baseLum = 0.1;
 
 var publishedDate;
 var shortURL;
 var globalTitle;
+
+var maxSlice, minSlice;
 
 var pageHeadTemplateFn = doT.template(pageHeadHTML);
 var metaContainerFn = doT.template(metaContainerHTML);
@@ -74,13 +76,11 @@ function app(el, days, headInfo) {
     shortURL = (window.guardian.config.page.shortUrl) ? (window.guardian.config.page.shortUrl) : "http://www.theguardian.com";
     requiredSections = Math.ceil(days.length/10); 
 
-    var maxSlice = getMaxNumber(days);
+    maxSlice = getMaxNumber(days);
 
-    var minSlice = getMinNumber(days, maxSlice);
+    minSlice = getMinNumber(days, maxSlice);
 
     sectionIds = sectionIds.slice(0, maxSlice);
-
-    console.log(minSlice, maxSlice, sectionIds)
 
     var k = 0;
 
@@ -262,8 +262,6 @@ function getSectionRef(n){
 }
 
 function setPageFurniture(headInfo){
-     
-     console.log(headInfo)
 
         headInfo.forEach(item => {
 
@@ -305,40 +303,61 @@ function setPageDate(){
 
 function setBaseColor(v){
 
-    var c = "#194377";               
+    var c = { main:"#005689", support:"#4bc6df", link:"#ffffff" };               
         
-        if (v == "culture"){ c = "#951c55"}
-        if (v == "comment"){ c = "#c05303"}
-        if (v == "multimedia"){ c = "#484848"}
-        if (v == "sport"){ c = "#1C4A00"}
-  
+        if (v == "culture"){ c = { main:"#951c55", support:"#b82266", link:"#fdadba" } }
+        if (v == "comment"){ c = { main:"#005689", support:"#4bc6df", link:"#ffffff" } }
+        if (v == "multimedia"){ c = { main:"#005689", support:"#4bc6df", link:"#ffffff" } }
+        if (v == "sport"){ c = { main:"#005689", support:"#4bc6df", link:"#ffffff" } }
+    
+    
+
     return c;
+                
                         
 } 
 
-function setColorScheme(baseColor){
-    document.getElementById("fixedFilterArea").style.background = baseColor;
-    document.getElementById("fixedFilterAreaBG").style.background = baseColor;
-    document.getElementById("filterArea").style.background = baseColor;
-    document.getElementById("filterAreaBG").style.background = baseColor;
-    document.getElementById("featureAreaBG").style.background = ColorLuminance(baseColor, baseLum);
-    document.getElementById("featureArea").style.background = ColorLuminance(baseColor, baseLum);
+function setColorScheme(c){
+
+
+    var m = (String(c.main));
+    var s = (String(c.support));
+    var l = (String(c.link));
+    document.getElementById("fixedFilterArea").style.background = s;
+    document.getElementById("fixedFilterAreaBG").style.background = ColorLuminance(s, baseLum * -0.5);
+    document.getElementById("filterArea").style.background =  s;
+    document.getElementById("filterAreaBG").style.background = ColorLuminance(s, baseLum *  -0.5);
+    document.getElementById("featureAreaBG").style.background = ColorLuminance(m, baseLum * -0.5);
+    document.getElementById("featureArea").style.background = m;
 
 
     var a = document.getElementsByClassName("dig-filters__filter__link__circle");
-    [].forEach.call(a, function (item) { item.style.color = baseColor; });
+    [].forEach.call(a, function (item) { item.style.color = m; });
 
     var a2 = document.getElementsByClassName('dig-days_day__number');
-    [].forEach.call(a2, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.color = c; });
+    [].forEach.call(a2, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(s, n* 0.02);  item.style.color = c; });
 
     var a3 = document.getElementsByClassName('dig-days__day');
-    [].forEach.call(a3, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.borderTop= n+'px solid '+c });
+    [].forEach.call(a3, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(s, n* 0.02);  item.style.borderTop=setBorderH(n)+'px solid '+c });
     
     var a4 = document.getElementsByClassName('dig-days__heading');
-    [].forEach.call(a4, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(baseColor, n*baseLum);  item.style.color = c;});
+    [].forEach.call(a4, function (item) {  var n = parseInt(item.getAttribute('data-count')); n = (11-n); var c = ColorLuminance(s, n* 0.02);  item.style.color = c;});
 
 
 } 
+
+function setBorderH(n){
+    //var m = 10/maxSlice;
+ 
+
+   console.log(maxSlice, n, 10/n)
+  
+    var a = [0.5,0.5,0.5,0.5,0.5,1,2,4,6,8,10,14]
+
+    console.log(n, a[n]);
+ 
+    return a[n];
+}
 
 function ColorLuminance(hex, lum) {
 
@@ -356,6 +375,8 @@ function ColorLuminance(hex, lum) {
             c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
             rgb += ("00"+c).substr(c.length);
         }
+       
+
 
         return rgb;
 }
