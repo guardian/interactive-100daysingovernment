@@ -4,6 +4,7 @@ import pageHeadHTML from './text/pageHead.html!text'
 import metaContainerHTML from './text/metaContainer.html!text'
 import mainHTML from './text/main.html!text'
 import filterHTML from './text/filter.html!text'
+import fixedFilterHTML from './text/fixedFilter.html!text'
 import sectionHTML from './text/section.html!text'
 
 import scrollTo from './lib/scroll-to'
@@ -42,6 +43,7 @@ var globalTitle;
 var pageHeadTemplateFn = doT.template(pageHeadHTML);
 var metaContainerFn = doT.template(metaContainerHTML);
 var filterTemplateFn = doT.template(filterHTML);
+var fixedFilterTemplateFn = doT.template(fixedFilterHTML);
 var sectionTemplateFn = doT.template(sectionHTML);
 
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
@@ -130,15 +132,9 @@ function app(el, days, headInfo) {
         });
     });
 
-    var pageHeadEl = el.querySelector('.js-head-area');
-    pageHeadEl.innerHTML = pageHeadHTML;
-    
-    setPageFurniture(headInfo);
-    setPageDate();
 
-    var filtersHTML = sectionIds.map(function (sectionId) {
 
-       return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId], 'showing':(sectionDays[sectionId].length === 0)});}).join('');
+    var filtersHTML = sectionIds.map(function (sectionId) { return filterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId], 'showing':(sectionDays[sectionId].length === 0)});}).join('');
       
             var filtersEl = el.querySelector('.js-filters');
             filtersEl.innerHTML = filtersHTML;
@@ -149,10 +145,113 @@ function app(el, days, headInfo) {
                     evt.preventDefault();
                     scrollTo(el.querySelector('#dig-section-' + sectionId));
                 });
-    });
+         });
 
-   // document.querySelector('.l-footer').style.display = 'block';
+    var fixedFiltersHTML  = sectionIds.map(function (sectionId) { return fixedFilterTemplateFn({'id': sectionId, 'title': sectionTitles[sectionId], 'showing':(sectionDays[sectionId].length === 0)});}).join('');      
+        
+            var fixedFiltersEl = el.querySelector('.js-filters-fixed');
+            fixedFiltersEl.innerHTML = fixedFiltersHTML;
+
+            $$(fixedFiltersEl, '.js-filter-fixed').forEach(fixedFilterEl => {
+                var sectionId = fixedFilterEl.getAttribute('data-section');
+                fixedFilterEl.addEventListener('click', evt => {
+                    evt.preventDefault();
+                    scrollTo(el.querySelector('#dig-section-' + sectionId));
+                
+            });   
+        }); 
+     var pageHeadEl = el.querySelector('.js-head-area');
+        pageHeadEl.innerHTML = pageHeadHTML;
+        
+        setPageFurniture(headInfo);
+        setPageDate();
+
+        addScrollListener();
   
+}
+
+function addScrollListener(){
+        var el = document.getElementById("fixedFilterAreaBG")
+
+        //console.log(el.scrollTop)
+        // var el = .style.display = 'none';
+
+        
+        window.onscroll=function(){ checkElScroll(el) };
+}
+
+function checkElScroll(el)
+{
+    
+    var docViewTop = document.body.scrollTop;
+    var docViewBottom = docViewTop + window.height;
+    var backTop = document.getElementById("backToTop");
+
+        if(isElementVisible(document.getElementById("featureAreaBG")))
+        {
+            hideElement(el);
+            
+            //unfixElement(backTop);
+        }else{
+            
+            showElement(el);
+            
+        }
+
+        // if(isElementVisible(document.getElementById("fixedFilterAreaBG"))){
+        //     hideElement(backTop);
+        // }else{
+        //     fixElement(backTop);
+        //     showElement(backTop);
+        // }
+
+    
+}
+
+function hideElement(el){
+     el.classList.remove("showing");
+     el.classList.add("hiding");
+
+    }
+
+function showElement(el){
+     el.classList.remove("hiding");
+     el.classList.add("showing");
+    }
+
+function fixElement(el){
+     var fixPos = document.getElementById("fixedFilters").offsetHeight; 
+     el.classList.remove("dig-slice_relative");
+     el.classList.add("dig-slice_fixed");
+     el.style.top = fixPos+'px';
+    }
+
+function unfixElement(el)
+    {
+     el.classList.remove("dig-slice_fixed");
+     el.classList.add("dig-slice_relative");
+    }   
+
+function isElementVisible(el) {
+    var rect = el.getBoundingClientRect(),
+    vWidth = window.innerWidth || doc.documentElement.clientWidth,
+    vHeight = window.innerHeight || doc.documentElement.clientHeight,
+    efp = function (x, y) { return document.elementFromPoint(x, y) };     
+
+    return(rect.height * -1 < rect.top)
+
+        // // Return false if it's not in the viewport
+        // if (rect.right < 0 || rect.bottom < 0 
+        //         || rect.left > vWidth || rect.top > vHeight)
+        //     return false;
+
+        // // Return true if any of its four corners are visible
+        // return (
+        //       el.contains(efp(rect.left,  rect.top))
+        //   ||  el.contains(efp(rect.right, rect.top))
+        //   ||  el.contains(efp(rect.right, rect.bottom))
+        //   ||  el.contains(efp(rect.left,  rect.bottom))
+        // );
 }
 
 function getSectionRef(n){
@@ -218,6 +317,8 @@ function setBaseColor(v){
 } 
 
 function setColorScheme(baseColor){
+    document.getElementById("fixedFilterArea").style.background = baseColor;
+    document.getElementById("fixedFilterAreaBG").style.background = baseColor;
     document.getElementById("filterArea").style.background = baseColor;
     document.getElementById("filterAreaBG").style.background = baseColor;
     document.getElementById("featureAreaBG").style.background = ColorLuminance(baseColor, baseLum);

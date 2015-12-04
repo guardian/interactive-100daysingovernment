@@ -1,0 +1,101 @@
+
+#fixedFilterAreaBG, #fixedBackButton{
+
+   @include mq(desktop) {
+
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    margin: 0;
+    width: 100%;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+        
+    } 
+    
+}
+
+.dig-fixed{
+    position: fixed;
+    top:0;
+}
+
+.dig-slice_fixed{
+
+    position: fixed;
+
+
+    @include mq(tablet){
+            width:180px;
+            right:30px;
+
+        }
+
+    @include mq(leftCol) {
+            width:120px;
+            padding-left:$gs-gutter/2;
+            left:auto;
+            right:auto;
+        }
+
+}
+
+.dig-slice_absolute{
+        position: absolute;
+}
+
+.dig-slice_relative{
+        position: relative;
+}
+
+
+// .dig-slice__inner__fixedFilter{
+//     height: gs-height(1);
+
+// }
+
+
+// .dig-slice__inner__fixedFilter {
+//     clear: left;
+
+//     margin: 0 auto;
+//     background-color: white;
+//     box-sizing: border-box;
+
+//     padding: 10px;
+//     @include mq(mobileLandscape) {
+//         padding: 20px;
+//     }
+
+//     @each $bp in (tablet, desktop, leftCol, wide) {
+//         @include mq($bp) {
+//             max-width: map-get($mq-breakpoints, $bp);
+//         }
+//     }
+
+//     .dig-slice--standfirst & {
+//         margin-top: -10px;
+//         @include mq(mobileLandscape) {
+//             margin-top: -20px;
+//         }
+        
+//         .dig-slice__inner__left {
+//             max-width: 660px;
+//         }
+//     }
+
+//     .dig-slice--filters & {
+//         background-color: #94bfdd;
+//         @include mq(mobileLandscape) {
+//             padding-bottom: 5px;
+//         }
+//     }
+// }

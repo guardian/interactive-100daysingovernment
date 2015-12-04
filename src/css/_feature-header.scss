@@ -26,6 +26,7 @@
     margin:0;
     color: white;
     padding-bottom: gs-height(1);
+    max-width:740px;
 
     @include mq(mobileLandscape) {
         font-size: 3em;
