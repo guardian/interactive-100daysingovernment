@@ -149,9 +149,16 @@ a {
         padding-right: 90px;
     
     @include mq(leftCol) {
+        
         padding-right: 0;
+        width:140px;
+        margin-right:20px;
     }
 
+     @include mq(wide) {
+        width:200px;
+        margin-right:20px;
+    }
     .dig-slice--filters & {
         //color: #FFF;
     }
