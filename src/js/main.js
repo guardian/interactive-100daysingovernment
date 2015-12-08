@@ -31,7 +31,7 @@ var sectionTitles = {
     'I': '81-90',
     'J': '91-100'
 };
-var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': []};
+var sectionDays = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [],'G': [], 'H': [], 'I': [],'J': [] };
 
 var requiredSections;
 var baseLum = 0.1;
@@ -75,12 +75,19 @@ function app(el, days, headInfo) {
     publishedDate = (window.guardian.config.page.webPublicationDate) ? formatGuardianDate(window.guardian.config.page.webPublicationDate) : "&nbsp;";
     shortURL = (window.guardian.config.page.shortUrl) ? (window.guardian.config.page.shortUrl) : "http://www.theguardian.com";
     requiredSections = Math.ceil(days.length/10); 
-
+    
     maxSlice = getMaxNumber(days);
 
     minSlice = getMinNumber(days, maxSlice);
 
+    console.log(minSlice,maxSlice)
+
+    //sectionTitles
+
+
     sectionIds = sectionIds.slice(0, maxSlice);
+
+    console.log(sectionIds)
 
     var k = 0;
 
@@ -97,6 +104,7 @@ function app(el, days, headInfo) {
 
         var n = getSectionRef(day.displayNumber);
         day.section = sectionIds[n];
+
         sectionDays[day.section].push(day);
         
     });
@@ -350,11 +358,11 @@ function setBorderH(n){
     //var m = 10/maxSlice;
  
 
-   console.log(maxSlice, n, 10/n)
+   //console.log(maxSlice, n, 10/n)
   
     var a = [0.5,0.5,0.5,0.5,0.5,1,2,4,6,8,10,14]
 
-    console.log(n, a[n]);
+    //console.log(n, a[n]);
  
     return a[n];
 }
