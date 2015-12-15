@@ -1,5 +1,4 @@
 
-      
 const shareURL = encodeURIComponent(window.guardian.config.page.shortUrl); // short url will only work in a guardian page
 const hashTag = '#GuardianReviewOfYear';
 

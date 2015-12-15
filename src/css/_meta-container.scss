@@ -10,7 +10,10 @@
 
 
 .dig-meta-container__inner{
-    padding:$gs-baseline/2 $gs-baseline $gs-baseline;
+    padding:$gs-baseline/2 0 $gs-baseline;
+    @include mq(mobileLandscape){
+        padding:$gs-baseline/2 $gs-baseline $gs-baseline;
+    }
 
      
 

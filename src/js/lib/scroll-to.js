@@ -4,6 +4,11 @@ function getOffset(el) {
     return el ? el.offsetTop + getOffset(el.offsetParent) : 0;
 }
 
+function getH(el) {
+    return el ? el.offsetHeight : 0;
+    //document.getElementById('myDiv').offsetHeight
+}
+
 var animationFrame = window.requestAnimationFrame;
 var vendors = ['ms', 'moz', 'webkit', 'o'];
 for (var x = 0; x < vendors.length && !animationFrame; ++x) {
@@ -12,9 +17,9 @@ for (var x = 0; x < vendors.length && !animationFrame; ++x) {
 
 animationFrame = animationFrame || function (cb) { setTimeout(cb, 13); };
 
-export default function scrollTo(el) {
+export default function scrollTo(el, fixedEl) {
     var start = window.pageYOffset;
-    var end = getOffset(el);
+    var end = getOffset(el) - getH(fixedEl);
     var distance = end - start;
     var elapsed = 0;
 

@@ -22,9 +22,9 @@ a {
 }
 
 .dig-slice {
-    background-color: #dcdcdc;
+    background-color: #FFF;
     &.dig-slice--filters {
-        background-color: #617e8e;
+        background-color: #FFF;
     }
 }
 
@@ -56,7 +56,7 @@ a {
     }
 
     .dig-slice--filters & {
-        background-color: #94bfdd;
+        background-color: #FFF;
         @include mq(mobileLandscape) {
             padding-bottom: 5px;
         }

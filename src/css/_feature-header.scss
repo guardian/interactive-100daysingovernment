@@ -40,7 +40,7 @@
     font-weight:600;
     font-size: 1rem;
     line-height:1.2em;
-    color: red;
+
     
 }
 
@@ -69,8 +69,10 @@
     height: gs-height(4);
 
 }
-
-
+.gv-highlight-holder a{
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+    
 
 .gv-highlight-holder a, .gv-highlight-holder a:hover, .gv-highlight-holder a:active{
     text-decoration: none !important;

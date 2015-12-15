@@ -9,11 +9,13 @@ import sectionHTML from './text/section.html!text'
 
 import scrollTo from './lib/scroll-to'
 import share from './lib/share'
+//lazy loader for youtube
+import youtube from './lib/youtube'
 import getQueryVariable from './lib/get-query-var'
 import getDataAltVariable from './lib/get-data-alt-var'
 import formatGuardianDate from './lib/format-guardian-date'
 
-const sheetPath = 'http://interactive.guim.co.uk/docsdata/';
+const sheetPath = 'https://interactive.guim.co.uk/docsdata/';
 const sheetKey = getDataAltVariable(); //getQueryVariable('key')
 const sheetFileType = '.json';
 const sheetURL = sheetPath+sheetKey+sheetFileType;
@@ -51,13 +53,12 @@ var sectionTemplateFn = doT.template(sectionHTML);
 var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function getMaxNumber(a){
-    var n = 0;
-    a.forEach(item => {
-        if(item.displayNumber > n){ n = item.displayNumber }
-    })
-
-    return (Math.ceil(n)/10);
+    var n = Math.ceil(a.length/10);
+    return n;
 }
+
+
+
 
 function getMinNumber(a, n){
    var k = n;
@@ -80,14 +81,7 @@ function app(el, days, headInfo) {
 
     minSlice = getMinNumber(days, maxSlice);
 
-    console.log(minSlice,maxSlice)
-
-    //sectionTitles
-
-
     sectionIds = sectionIds.slice(0, maxSlice);
-
-    console.log(sectionIds)
 
     var k = 0;
 
@@ -95,9 +89,9 @@ function app(el, days, headInfo) {
         k++;
         day.k = k; 
         if (day.YouTubeVideoKey) {
-             day.Video = "https://www.youtube.com/embed/"+day.YouTubeVideoKey;
+             day.Video = day.YouTubeVideoKey;
              day.hierarchy = 'H';
-
+             console.log(day)
         }
         
         //group entries in bands of 10
@@ -128,7 +122,9 @@ function app(el, days, headInfo) {
     $$(sectionsEl, '.js-back-to-top').forEach(sectionEl => {
         sectionEl.addEventListener('click', evt => {
             evt.preventDefault();
-            scrollTo(el.querySelector('.js-top'));
+            //fixedFilterArea
+
+            scrollTo(el.querySelector('.js-top'), document.getElementById('fixedFilterAreaBG'));
         });
     });
 
@@ -151,7 +147,8 @@ function app(el, days, headInfo) {
                 var sectionId = filterEl.getAttribute('data-section');
                 filterEl.addEventListener('click', evt => {
                     evt.preventDefault();
-                    scrollTo(el.querySelector('#dig-section-' + sectionId));
+
+                    scrollTo(el.querySelector('#dig-section-' + sectionId), document.getElementById('fixedFilterAreaBG'));
                 });
          });
 
@@ -164,7 +161,7 @@ function app(el, days, headInfo) {
                 var sectionId = fixedFilterEl.getAttribute('data-section');
                 fixedFilterEl.addEventListener('click', evt => {
                     evt.preventDefault();
-                    scrollTo(el.querySelector('#dig-section-' + sectionId));
+                    scrollTo(el.querySelector('#dig-section-' + sectionId), document.getElementById('fixedFilterAreaBG'));
                 
             });   
         }); 
@@ -284,7 +281,6 @@ function setPageFurniture(headInfo){
 
             if(item.Type === 'Section'){
                 var s = getSubTitleHTML(item);
-                console.log(s)
                 document.getElementById("gvSectionSubHead").innerHTML = s;
             }
 
@@ -293,6 +289,8 @@ function setPageFurniture(headInfo){
             }
 
         });
+
+        youtube();
 
 }
 
@@ -356,13 +354,8 @@ function setColorScheme(c){
 
 function setBorderH(n){
     //var m = 10/maxSlice;
- 
-
-   //console.log(maxSlice, n, 10/n)
   
-    var a = [0.5,0.5,0.5,0.5,0.5,1,2,4,6,8,10,14]
-
-    //console.log(n, a[n]);
+    var a = [0.5,0.5,0.5,0.5,0.5,0.5,1,1,2,4,8,12];
  
     return a[n];
 }

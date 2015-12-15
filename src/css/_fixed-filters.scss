@@ -28,6 +28,13 @@
     top:0;
 }
 
+#fixedFilterArea{
+    display:none;
+    @include mq(tablet){
+        display:block;
+    }
+}
+
 .dig-slice_fixed{
 
     position: fixed;
