@@ -12,7 +12,7 @@
     <div class="dig-slice__inner__main">
         <ul class="dig-days">
             {{~it.days :day:i}}
-                <li class="dig-days__day dig-days__day--{{=day.hierarchy}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.k/10))}}">
+                <li class="dig-days__day dig-days__day--{{=day.hierarchy}}{{?day.Video}}V{{?}}" data-section="{{=day.section}}" data-count="{{=Math.ceil((day.k/10))}}">
                     {{?day.Video}}
                             <div class="day__videocontent show-desktop">
                                 <div class="day__video-container">

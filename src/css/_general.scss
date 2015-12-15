@@ -304,17 +304,18 @@ $day-spacing: 20px;
     // }
 
     width: 100%;
-    min-height: 132px;
+    min-height: 120px;
 
     @include mq(mobileLandscape) {
         width: calc(50% - #{$day-spacing});
 
         &.dig-days__day--B,
         &.dig-days__day--M,
-        &.dig-days__day--H, &.dig-days__day--VH{
+        &.dig-days__day--H, &.dig-days__day--HV{
             width: calc(100% - #{$day-spacing});
             overflow: hidden;
         }
+        
         
     }
 
@@ -331,9 +332,9 @@ $day-spacing: 20px;
             height: 420px;
         }
 
-         &.dig-days__day--VH {
-            height: 420px;
-            padding-bottom:12px;
+         &.dig-days__day--HV{
+            height:360px;
+            margin-bottom:20px;
         }
     }
 }

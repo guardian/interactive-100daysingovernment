@@ -99,6 +99,7 @@ function app(el, days, headInfo) {
         var n = getSectionRef(day.displayNumber);
         day.section = sectionIds[n];
 
+        console.log(day)
         sectionDays[day.section].push(day);
         
     });
