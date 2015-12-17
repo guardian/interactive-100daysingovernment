@@ -91,15 +91,12 @@ function app(el, days, headInfo) {
         if (day.YouTubeVideoKey) {
              day.Video = day.YouTubeVideoKey;
              day.hierarchy = 'H';
-             console.log(day)
         }
         
         //group entries in bands of 10
 
         var n = getSectionRef(day.displayNumber);
         day.section = sectionIds[n];
-
-        console.log(day)
         sectionDays[day.section].push(day);
         
     });

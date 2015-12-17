@@ -130,8 +130,13 @@ a {
 
 .dig-section-title-sub {
 
-    @include fs-header(2);
+    @include fs-header(1);
+        padding-right: 10px;
+
+    @include mq(tablet){
+        @include fs-header(2);
         padding-right: 90px;
+    }    
     
     @include mq(leftCol) {
         padding-right: 0;
@@ -145,8 +150,13 @@ a {
 .dig-section-title {
 
     color: rgba(255, 255, 255, 0.8);
-    @include fs-header(4);
+    @include fs-header(1);
+        padding-right: 10px;
+
+    @include mq(tablet){
+        @include fs-header(4);
         padding-right: 90px;
+    }    
     
     @include mq(leftCol) {
         

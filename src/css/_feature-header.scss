@@ -21,15 +21,15 @@
 .dig-slice__inner__graphic h1{
     font-family: "Guardian Egyptian Web", serif; 
     font-weight:200;
-    font-size:2.75rem;
+    font-size:1.75rem;
     line-height:1em;
     margin:0;
     color: white;
     padding-bottom: $gs-baseline;
     max-width: gs-span(8);
 
-    @include mq(mobileLandscape) {
-        //font-size: 3em;
+    @include mq(tablet) {
+        font-size:2.75rem;;
     }
 }
 
@@ -56,9 +56,14 @@
 
 .gv-highlight-holder{
     font-family: "Guardian Egyptian Web", serif; 
-    font-size: 1.125rem;
+    font-size: 1rem;
+    line-height:1.4rem;
     width:100%;
     max-width: gs-span(8);
+
+    @include mq(tablet){
+        font-size: 1.125rem;
+    }
 }
 
 .with-divider{
